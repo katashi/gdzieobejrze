@@ -1,0 +1,50 @@
+{include file="extension/header_home.html"}
+<div class="wrapper">
+    <!-- header -->
+    <div id="header">
+        <div id="max-width">
+            <ul class="sf-menu">
+                <li><a href="#">O nas</a></li>
+                <li><a href="#">Dodaj sklep</a></li>
+                <li><a href="#">Współpraca</a></li>
+                <li><a href="#">Regulamin</a></li>
+                <li><a href="#">Pomoc</a></li>
+                <li><a href="#">Forum</a></li>
+                <li><a href="#">Kontakt</a></li>
+                <li><a class="log" href="#"><span style="color:black;">Logowanie</span></a></li>
+            </ul>
+        </div>
+        <div id="line"></div>
+        <!-- end header -->
+        <!-- content -->
+        <div id="content">
+            <img alt="logo Gdzie Obejrze" height="111" src="{$site_url}images/logo-gdzie-obejrze.png" width="153"/><br/>
+            <span id="logo-napis">  gdzie<span>obejrze</span>.pl</span><br/>
+            <br/>
+            <div id="slogan"> Contrary to popular belief, Lorem Ipsum.
+            </div>
+            <div id="boxes">
+                <div id="box1" style="">Znajdź przedmiot<br/>
+                    <input onfocus="if(this.value=='Samsung LCD 43 HD') this.value='';" onblur="if(this.value=='') this.value='Samsung LCD 43 HD';" value="Samsung LCD 43 HD"/><a href="#" class="button">Wybierz z kategorii </a>
+                </div>
+                <div id="box2" style="">Podaj lokalizację<input
+                        onfocus="if(this.value=='Bez lokalizacji') this.value='';" onblur="if(this.value=='') this.value='Bez lokalizacji';" value="Bez lokalizacji"/>
+                </div>
+                <div id="box3" style="">Wybierz zasięg poszukiwań
+                    <div class="button-holder">
+                        <input type="radio" id="radio-1-1" name="radio-1-set" class="regular-radio" checked/><label for="radio-1-1"></label>&nbsp;1km &nbsp;&nbsp;
+                        <input type="radio" id="radio-1-2" name="radio-1-set" class="regular-radio"/><label for="radio-1-2"></label>&nbsp;5 km&nbsp;&nbsp;
+                        <input type="radio" id="radio-1-4" name="radio-1-set" class="regular-radio"/><label for="radio-1-4"></label>&nbsp;15 km
+                        <div style="float:right"><input
+                                onfocus="if(this.value=='Zasięg w km') this.value='';" onblur="if(this.value=='') this.value='Zasięg w km';" value="Zasięg w km"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="boxes-lines">
+                <a href="#">
+                    <img id="tras" alt="szukaj" height="58" src="{$site_url}images/trans.png" width="210"/></a></div>
+        </div>
+        <!-- end content -->
+    </div>
+{include file="extension/footer_home.html"}

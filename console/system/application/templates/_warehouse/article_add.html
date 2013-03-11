@@ -1,0 +1,106 @@
+<script type="text/javascript">{literal}
+
+function Article_Add() {
+
+    // var
+    this._dir = '{/literal}{$_dir}{literal}';
+    this._field = JSON.parse('{/literal}{$field}{literal}');
+    this._id = '{/literal}{$_id}{literal}';
+    this._name = '{/literal}{$_name}{literal}';
+    this._path = base_url+'/'+this._dir+':'+this._name;
+    this._ptb_mode = 'default';
+    //
+    this.id = '{/literal}{$id}{literal}';
+
+    // crud
+    this.add = function(obj) {
+        obj.panel.display.form.submit({
+            method: 'POST',
+            url: this._path+'/add/'+this.id,
+            success: function() {
+                if (article.store) { article.store.display.reload(); }
+                Ext.MessageBox.alert('Katashi', 'Operacja zakończona poprawnie');
+            },
+            failure: function() {
+                Ext.MessageBox.alert('Katashi', 'Wystąpił błąd');
+            }
+        });
+    }
+
+    // form
+    var config = new Object({
+        items: [{
+            fieldLabel: 'Tytuł',
+            name: 'title',
+            xtype: 'textfield'
+        },{
+            fieldLabel: 'Nagłówek',
+            name: 'header',
+            xtype: 'textarea'
+        },{
+            fieldLabel: 'Treść',
+            height: 250,
+            name: 'text',
+            xtype: 'htmleditor',
+            width: 550
+        },{
+            html: '<br>Pole Tytuł, Opis oraz Słowa Kluczowe nie powinny być dłuższe <b>aniżeli 255 znaków</b>.<br>Wykorzystywane są one przy indeksacji np. w wyszukiwarce Google lub Yahoo.<br><br>',
+            width: 778
+        },{
+            fieldLabel: 'Meta Tytuł',
+            name: 'meta_title',
+            xtype: 'textfield'
+        },{
+            fieldLabel: 'Meta Opis',
+            name: 'meta_description',
+            xtype: 'textfield'
+        },{
+            fieldLabel: 'Meta Słowa Kluczowe',
+            name: 'meta_keywords',
+            xtype: 'textfield'
+        },{
+            html: '<br>Obrazek - Nagłówek artykułu widoczny w listach czy skrótach. Przeciągnij wybrany obraz z części Media / Obrazy.<br><br>',
+            width: 778
+        },{
+            id: 'image',
+            name: 'image',
+            xtype: 'hidden'
+        },{
+            allowBlank: false,
+            fieldLabel: 'Obrazek',
+            id: 'image_image_waa',
+            name: 'image_image',
+            xtype: 'box',
+            autoEl:{
+                tag:'div',
+                children:[{
+                    tag:'img',
+                    src: '../media/image/default/80x60.jpg'
+                }]
+            }
+        }],
+        buttons: new Form_Add_Button_Create(this),
+        listeners: {
+            render: function(form) {
+                form.DropTarget = new Ext.dd.DropTarget(form.getEl(), {
+                    copy: false,
+                    ddGroup: 'media',
+                    enabled: true,
+                    notifyDrop: function(dd, e, data) {
+                        var field = form.findById('image_image_waa');
+                        field.update('<img src="../media/image/80x60/'+data.node.attributes.file_name+'" border="1">');
+                        var field = form.findById('image');
+                        field.setValue(data.node.attributes.file_name);
+                    }
+                });
+            }
+        }
+    });
+    this.panel = new FormPanel(); this.panel.init(config);
+    this.panel.display.render(Ext.get(this._id));
+
+}
+var article_add = new Article_Add();
+//
+{/literal}</script>
+<div id="{$_id}"></div>

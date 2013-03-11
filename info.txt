@@ -1,0 +1,19 @@
+URL:
+http://www.knsdes.nazwa.pl/www_gdzieobejrze_pl/www
+http://www.knsdes.nazwa.pl/www_gdzieobejrze_pl/console
+
+TEST 2
+
+FTP:
+ftp.knsdes.nazwa.pl
+login: knsdes_go
+has³o: Adsf02R@#$_asd
+
+BAZA:
+Nazwa bazy danych: knsdes_46
+U¿ytkownik bazy (login): knsdes_46
+Has³o: AaS^Dgw2#933542
+Typ bazy: MySQL 5.0
+Adres serwera baz danych: sql.knsdes.nazwa.pl
+Port serwera baz danych: 3306
+Panel zarz¹dzania baz¹ danych: https://mysql.nazwa.pl/

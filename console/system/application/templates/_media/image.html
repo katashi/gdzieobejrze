@@ -1,0 +1,124 @@
+<script type="text/javascript">{literal}
+
+function MImage() {
+
+    // var
+    this._dir = '{/literal}{$_dir}{literal}';
+    this._field = JSON.parse('{/literal}{$field}{literal}');
+    this._id = '{/literal}{$_id}{literal}';
+    this._name = '{/literal}{$_name}{literal}';
+    this._path = base_url+'/'+this._dir+':'+this._name;
+    this._ptb_mode = 'image';
+    //
+    this.id = '{/literal}{$id}{literal}';
+
+    // store
+    var config = new Object({
+        fields: new Array('tree', 'element_id', 'element_title', 'element_file_name', 'element_file_type', 'element_orig_name', 'element_file_size', 'element_dimensions'),
+        id: this._name,
+        name: this._name,
+        path: this._path,
+        url: this._path+'/load_all/'+this.id
+    });
+    this.store = new Store(); this.store.init(config);
+
+    // crud
+    this.image = function(value,m,record) {
+        return String.format('<a href="javascript:new Helper_Ui().pretty_show(\''+record.data.element_file_name+'\',\''+record.data.element_orig_name+'\');"><image src="../media/image/80x60/'+record.data.element_file_name+'"></a>');
+    }
+    this.title = function(value,m,record) {
+        return String.format('<a href="javascript:new Helper_Ui().url_window(\'../media/image/1600x1200/'+record.data.element_file_name+'\');">(1600x1200)</a><br><a href="javascript:new Helper_Ui().url_window(\'../media/image/100x75/'+record.data.element_file_name+'\');">(100x75)</a>');
+    }
+    this.option = function(value,m,record,ri,ci,store) {
+        return String.format('<a href="javascript:Grid_Delete(\''+store.name+'\',\''+store.path+'/delete/'+record.data.element_id+'\',\'west_image\');"><img src="images/icon/delete.png" border="0"></a>');
+    }
+
+    // grid
+    this.ptb = new PagingToolBar(); this.ptb.init(Ptb_Create(this));
+    var config = new Object({
+        store: this.store.display,
+        tbar: this.ptb.display,
+        columns: [
+            { id: 'image', header: 'obrazek', renderer: this.image},
+            { id: 'title', header: 'nazwa (+pobierz)', renderer: this.title },
+            { id: 'file_type', dataIndex: 'element_file_type', header: 'typ (mime)' },
+            { id: 'file_size', dataIndex: 'element_file_size', header: 'wielkość (kb)' },
+            { id: 'dimensions', dataIndex: 'element_dimensions', header: 'rozmiar oryginalny' },
+            { id: 'options', header: 'opcje', renderer: this.option }
+        ]
+    });
+    this.grid = new EditorGridPanel(); this.grid.init(config);
+
+    // panel/load
+    var config = new Object({items:[this.grid.display]});
+    this.panel = new Panel(); this.panel.init(config);
+    this.panel.display.render(Ext.get(this._id));
+    this.store.display.load({params:{start:0,limit:_paging_limit}});
+
+    // add
+    this.media_add = function(obj) {
+        // panel
+        var config = new Object({
+            fileUpload: true,
+            items: [{
+                allowBlank: false,
+                emptyText: 'Wybierz plik',
+                fieldLabel: 'Plik',
+                name: 'userfile',
+                xtype: 'fileuploadfield'
+            }],
+            buttons: [{
+                text: 'Dodaj plik',
+                listeners: {
+                    click: function(ptb, e) {
+                        obj.media_upload(obj);
+                    }
+                }
+            },{
+                text: 'Wyczyść',
+                listeners: {
+                    click: function(ptb, e) {
+                        obj.media_add_reset(obj);
+                    }
+                }
+            }]
+        });
+        this.panel_ma = new FormPanel();
+        this.panel_ma.init(config);
+        obj.panel_ma = this.panel_ma;
+        // window
+        var config = new Object({
+            title: 'Dodaj Obrazek',
+            width: 500,
+            items: [ this.panel_ma.display ]
+        });
+        this.window_ma = new Window();
+        this.window_ma.init(config);
+        this.window_ma.display.show();
+    }
+    this.media_add_reset = function(obj) {
+        this.panel_ma.display.getForm().reset();
+    }
+    this.media_upload = function(obj) {
+        if (obj.panel_ma.display.getForm().isValid()) {
+            obj.panel_ma.display.getForm().submit({
+                url: this._path+'/add/'+this.id,
+                success: function(form, o){
+                    obj.window_ma.display.hide();
+                    obj.store.display.reload();
+                    west_image.ui_tree.root.reload();
+                    west_image.ui_tree.path_expand();
+                }
+            });
+        }
+    }
+    this.directory_add = function(obj) {
+        new Helper_Ui().add_window('image_directory_add', 'Dodaj katalog', base_url+'/_core:tree/add/image');
+    }
+
+}
+//
+var image = new MImage();
+//
+{/literal}</script>
+<div id="{$_id}"></div>
