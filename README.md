@@ -1,0 +1,2 @@
+vertes_gdzieobejrze
+===================
