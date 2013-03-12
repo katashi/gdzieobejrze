@@ -17,6 +17,8 @@ class Main extends Controller {
 		//
         $this->include_controller('hub');
 		$this->include_controller('_core/administrator');
+        // TEST WARTOSCI Z SESJI
+        $this->config->load('config_admin');
 	}
 
 	// preliminary launch
@@ -26,8 +28,6 @@ class Main extends Controller {
         $this->administrator_authorised = $this->administrator->session_verify();
         $this->template = ($this->administrator_authorised) ? 'main' : 'login';
         // prepare js injection
-        //$jsvar0 = $this->js_prepare_var('site_url', SITE_URL);
-        //$this->smarty->assign('site_url', $jsvar0);
         $js0 = $this->js_prepare_file('javascript/configuration.js');
         $this->smarty->assign('js0', $js0);
         $js1 = $this->js_prepare_directory('javascript/component');
@@ -36,7 +36,7 @@ class Main extends Controller {
         $this->smarty->assign('js2', $js2);
         $js3 = $this->js_prepare_directory('javascript/inc');
         $this->smarty->assign('js3', $js3);
-		// display
+        // display
         $this->smarty->display($this->template.'.html');
 	}
 	function index_check() {

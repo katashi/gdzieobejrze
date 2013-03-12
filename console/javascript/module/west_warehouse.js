@@ -31,6 +31,11 @@ function West_Warehouse() {
 			west_article.init();
 			new Helper_Ui().add_ui(this.ui.display, west_article.ui.display);
 		}
+        if (window._west_product) {
+			west_product = new West_Product();
+			west_product.init();
+			new Helper_Ui().add_ui(this.ui.display, west_product.ui.display);
+		}
 
 	}
 	
