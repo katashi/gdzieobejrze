@@ -11,37 +11,75 @@ class Main_Model extends Model {
         return $this->db->list_fields($this->_name);
     }
     function load_total() {
+        //exception for partners
+        $fields = $this->load_field();
+        if(in_array('id_partner',$fields)){
+            if(isset($this->ci->session->userdata['administrator_id_partner']) != 0){
+                $this->db->where('id_partner',$this->ci->session->userdata['administrator_id_partner']);
+            }
+        }
+        // end exception
         $this->db->from($this->_name);
         return $this->db->count_all_results();
     }
     function load_all() {
+        //exception for partners
+        $fields = $this->load_field();
+        if(in_array('id_partner',$fields)){
+            if(isset($this->ci->session->userdata['administrator_id_partner']) != 0){
+                $this->db->where('id_partner',$this->ci->session->userdata['administrator_id_partner']);
+            }
+        }
+        // end exception
         $query = $this->db->get($this->_name);
         $record = $query->result_array();
         return $record;
     }
-    function load($id) {
-        $this->db->where('id', $id);
+    function load($id , $where = 'id') {
+        //exception for partners
+        $fields = $this->load_field();
+        if(in_array('id_partner',$fields)){
+            if(isset($this->ci->session->userdata['administrator_id_partner']) != 0){
+                $this->db->where('id_partner',$this->ci->session->userdata['administrator_id_partner']);
+            }
+        }
+        // end exception
+        $this->db->where($where, $id);
         $query = $this->db->get($this->_name);
         $record = $query->row_array();
         return $record;
     }
-
     // crud
     function add() {
         $this->db->insert($this->_name, $_POST);
         return 1;
     }
-    function edit($id) {
-        $this->db->where('id', $id);
+    function edit($id , $where = 'id') {
+        //exception for partners
+        $fields = $this->load_field();
+        if(in_array('id_partner',$fields)){
+            if(isset($this->ci->session->userdata['administrator_id_partner']) != 0){
+                $this->db->where('id_partner',$this->ci->session->userdata['administrator_id_partner']);
+            }
+        }
+        // end exception
+        $this->db->where($where, $id);
         $this->db->update($this->_name, $_POST);
         return 1;
     }
-    function delete($id) {
-        $this->db->where('id', $id);
+    function delete($id , $where = 'id') {
+        //exception for partners
+        $fields = $this->load_field();
+        if(in_array('id_partner',$fields)){
+            if(isset($this->ci->session->userdata['administrator_id_partner']) != 0){
+                $this->db->where('id_partner',$this->ci->session->userdata['administrator_id_partner']);
+            }
+        }
+        // end exception
+        $this->db->where($where, $id);
         $query = $this->db->delete($this->_name);
         return 1;
     }
-
     // db query modifier
     function limit_check() {
         if (isset($_REQUEST['start']) && isset($_REQUEST['limit'])) {
@@ -51,8 +89,7 @@ class Main_Model extends Model {
         }
     }
 
-/*
-    //
+/*  //
     // active set
     //
     function active_set($id, $state) {

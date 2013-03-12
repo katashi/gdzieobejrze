@@ -16,6 +16,9 @@ class Administrator extends Hub {
         $this->load->model('main_model');
         $this->_model = $this->load->model($this->_path.'_model');
         //
+//        echo'<pre>';
+//        print_R($this->_model);
+//        echo'</pre>';
         $this->ci->smarty->assign('_dir', $this->_dir);
         $this->ci->smarty->assign('_id', $this->_id);
         $this->ci->smarty->assign('_name', $this->_name);
@@ -30,11 +33,13 @@ class Administrator extends Hub {
 	function session_create($record) {
 		$this->ci->session->set_userdata('administrator_authorised', true);
         $this->ci->session->set_userdata('administrator_type', $record['type']);
+        $this->ci->session->set_userdata('administrator_id_partner', $record['id_partner']);
         $this->ci->session->set_userdata('administrator_user', $record['user']);
         $this->ci->session->set_userdata('administrator_email', $record['email']);
 	}
 	function session_destroy() {
 		$this->ci->session->unset_userdata('administrator_authorised');
+        $this->ci->session->unset_userdata('administrator_id_partner');
         $this->ci->session->unset_userdata('administrator_type');
         $this->ci->session->unset_userdata('administrator_user');
         $this->ci->session->unset_userdata('administrator_email');

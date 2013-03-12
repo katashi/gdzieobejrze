@@ -18,7 +18,11 @@ class Main extends Controller {
         $this->include_controller('hub');
 		$this->include_controller('_core/administrator');
         // TEST WARTOSCI Z SESJI
-        $this->config->load('config_admin');
+        if(isset($this->session->userdata['administrator_id_partner']) && $this->session->userdata['administrator_id_partner']!= 0){
+            $this->config->load('config_partner');
+        }else{
+            $this->config->load('config_admin');
+        }
 	}
 
 	// preliminary launch

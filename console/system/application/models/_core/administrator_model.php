@@ -47,5 +47,16 @@ class Administrator_Model extends Main_Model {
         return '{"success": true}';
 	}
 
+    function load_total() {
+        $this->db->from($this->_name);
+        return $this->db->count_all_results();
+    }
+    function load_all() {
+        $query = $this->db->get($this->_name);
+        $record = $query->result_array();
+        return $record;
+    }
+
+
 }
 ?>

@@ -5,17 +5,13 @@
 | -------------------------------------------------------------------------
 */
 $config['system'] = array(
-    0 => array('iconCls'=>'group_gear', 'id'=>'administrator', 'text'=>'Administratorzy', 'type'=>'tab', 'url'=>APP_URL.'/_core:administrator/display'),
-    1 => array('iconCls'=>'group_gear', 'id'=>'users', 'text'=>'Użytkownicy', 'type'=>'tab', 'url'=>APP_URL.'/_core:user/display'),
-    2 => array('-'),
-    3 => array('iconCls'=>'door_out', 'text'=>'Wyloguj', 'type'=>'href', 'url'=>APP_URL.'/_core:administrator/logout')
+    0 => array('iconCls'=>'door_out', 'text'=>'Wyloguj', 'type'=>'href', 'url'=>APP_URL.'/_core:administrator/logout')
 );
-$config['tab1'] = array(
-    0 => array('iconCls'=>'group_gear', 'id'=>'shops', 'text'=>'Sklepy', 'type'=>'tab', 'url'=>APP_URL.'/_core:administrator/display'),
-    1 => array('iconCls'=>'group_gear', 'id'=>'categories', 'text'=>'Kategorie', 'type'=>'tab', 'url'=>APP_URL.'/_core:user/display'),
-    2 => array('iconCls'=>'group_gear', 'id'=>'products', 'text'=>'Produkty', 'type'=>'tab', 'url'=>APP_URL.'/_core:user/display'),
-    3 => array('-')
+$config['zarzadzaj'] = array(
+    0 => array('iconCls'=>'group_gear', 'id'=>'shops', 'text'=>'Twoj Sklep', 'type'=>'tab', 'url'=>APP_URL.'/gdzieobejrze:widok_productu/display'),
+    //1 => array('iconCls'=>'group_gear', 'id'=>'categories', 'text'=>'Kategorie', 'type'=>'tab', 'url'=>APP_URL.'/_core:user/display'),
+    1 => array('iconCls'=>'group_gear', 'id'=>'products', 'text'=>'Twoje Produkty', 'type'=>'tab', 'url'=>APP_URL.'/gdzieobejrze:partner_product/display'),
+    2 => array('-')
 );
-
 /* End of file config.php */
 /* Location: ./system/application/config/config.php */

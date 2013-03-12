@@ -1,0 +1,40 @@
+<script type="text/javascript">{literal}
+
+function Product_Dict_Category_Add() {
+
+    // var
+    this._dir = '{/literal}{$_dir}{literal}';
+    this._field = JSON.parse('{/literal}{$field}{literal}');
+    this._id = '{/literal}{$_id}{literal}';
+    this._name = '{/literal}{$_name}{literal}';
+    this._path = base_url+'/'+this._dir+':'+this._name;
+    this._ptb_mode = 'default';
+
+    // crud
+    this.add = function(obj) {
+        obj.panel.display.form.submit({
+            method: 'POST',
+            url: this._path+'/add',
+            success: function() {
+                if (administrator.store) { administrator.store.display.reload(); }
+                Ext.MessageBox.alert('Katashi', 'Operacja zakończona poprawnie');
+            },
+            failure: function() {
+                Ext.MessageBox.alert('Katashi', 'Wystąpił błąd');
+            }
+        });
+    }
+
+    // form
+    var config = new Object({
+        items: new Form_Add_Item_Create(this),
+        buttons: new Form_Add_Button_Create(this)
+    });
+    this.panel = new FormPanel(); this.panel.init(config);
+    this.panel.display.render(Ext.get(this._id));
+
+}
+var Product_Dict_Category_Add = new Product_Dict_Category_Add();
+//
+{/literal}</script>
+<div id="{$_id}"></div>

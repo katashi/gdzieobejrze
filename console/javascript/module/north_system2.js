@@ -12,7 +12,7 @@ function North_System2() {
         // predefine menu to attach to button
         var config = new Object({
             id:'north_system_menu2',
-            url:base_url + '/_core:menu/get/tab1'
+            url:base_url + '/_core:menu/get/zarzadzaj'
         });
         this.ui_menu = new Menu();
         this.ui_menu.init(config);
@@ -23,7 +23,7 @@ function North_System2() {
         // here we construct ui
         var config = new Object({
             iconCls:'brick',
-            text:'Gdzie Obejrzę',
+            text:'Zarządzaj',
             menu:menu
         });
         this.ui = new Button();

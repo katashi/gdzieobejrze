@@ -6,7 +6,7 @@
 */
 
 // site url for an application (access for back office console )
-define('SITE_URL', 'http://'.$_SERVER['SERVER_NAME'].'');
+define('SITE_URL', 'http://'.$_SERVER['SERVER_NAME'].'/www_gdzieobejrze_pl');
 
 // config api
 define('API_DEBUG', 0);
