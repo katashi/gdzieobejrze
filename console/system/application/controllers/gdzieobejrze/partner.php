@@ -22,4 +22,9 @@ class Partner extends Hub {
         $this->ci->smarty->assign('field', json_encode($this->_model->load_field()));
 	}
 
+    function display_edit_shop() {
+        $id = $this->ci->session->userdata['administrator_id_partner'];
+        $this->ci->smarty->assign('id', $id);
+        $this->ci->smarty->display($this->_path.'_edit.html');
+    }
 }

@@ -64,8 +64,8 @@ class Tree extends Main {
 	// add save
 	//
 	function add_save($table, $pid) {
-		$success = $this->tree_model->add_save($table, $pid);	
-		echo $success;
+		$success = $this->tree_model->add_save($table, $pid);
+        echo $success;
 	}
 	
 	//

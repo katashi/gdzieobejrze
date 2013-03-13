@@ -1,24 +1,35 @@
 <script type="text/javascript">{literal}
 
-function Product_Dict_Category_Add() {
+function Product_Dict_Vendor_Edit() {
 
     // var
     this._dir = '{/literal}{$_dir}{literal}';
     this._field = JSON.parse('{/literal}{$field}{literal}');
     this._id = '{/literal}{$_id}{literal}';
     this._name = '{/literal}{$_name}{literal}';
-    this._path = base_url+'/'+this._dir+':'+'product_dict_category';
+    this._path = base_url+'/'+this._dir+':'+this._name;
     this._ptb_mode = 'default';
+    //
+    this.id = '{/literal}{$id}{literal}';
 
     // crud
-    this.add = function(obj) {
+    this.load = function(obj) {
+        this.panel.display.form.load({
+            method:'POST',
+            url:this._path+'/load/'+this.id,
+            success:function() {
+            },
+            failure:function () {
+                Ext.MessageBox.alert('Katashi', 'Wystąpił błąd');
+            }
+        });
+    }
+    this.edit = function(obj) {
         obj.panel.display.form.submit({
             method: 'POST',
-            url: this._path+'/add',
+            url: this._path+'/edit/'+this.id,
             success: function() {
-                if (product_dict_category.store) { product_dict_category.store.display.reload(); }
-                west_product.ui_tree.root.reload();
-                west_product.ui_tree.path_expand();
+                if (product_dict_vendor.store) {product_dict_vendor.store.display.reload(); }
                 Ext.MessageBox.alert('Katashi', 'Operacja zakończona poprawnie');
             },
             failure: function() {
@@ -26,21 +37,24 @@ function Product_Dict_Category_Add() {
             }
         });
     }
-
     // form
     var config = new Object({
-        items:  [{
+        items: [{
             fieldLabel: 'Tytuł',
             name: 'title',
             xtype: 'textfield'
         }],
-        buttons: new Form_Add_Button_Create(this)
+        buttons: new Form_Edit_Button_Create(this)
     });
     this.panel = new FormPanel(); this.panel.init(config);
     this.panel.display.render(Ext.get(this._id));
-
+    this.load(this);
 }
-var Product_Dict_Category_Add = new Product_Dict_Category_Add();
+var Product_Dict_Vendor_edit  = new Product_Dict_Vendor_Edit();
+//
+function image_delete() {
+    Product_Dict_Vendor_edit.image_delete();
+}
 //
 {/literal}</script>
 <div id="{$_id}"></div>

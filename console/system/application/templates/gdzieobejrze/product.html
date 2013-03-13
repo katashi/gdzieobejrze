@@ -9,7 +9,6 @@ function Product() {
     this._name = '{/literal}{$_name}{literal}';
     this._path = base_url+'/'+this._dir+':'+this._name;
     this._ptb_mode = 'default';
-
     // crud
     this.add = function(obj) {
         id = obj._id+'_add_'+Math.floor((Math.random()*999999999)+1);
@@ -24,9 +23,9 @@ function Product() {
         center.ui.tab_add(id, title, path);
     }
     this.option = function(value,m,record,ri,ci,store) {
-        return String.format('<a href="javascript:Grid_Delete(\''+store.name+'\',\''+store.path+'/delete/'+record.data.id+'\');"><img src="images/icon/delete.png" border="0"></a>');
+        return String.format(  '<a href="javascript:Grid_Edit(\''+id+'\',\''+record.data.title+'\',\''+store.path+'/display_edit/'+record.data.id+'\');"><img src="images/icon/page_edit.png" border="0"></a> '+
+                               '<a href="javascript:Grid_Delete(\''+store.name+'\',\''+store.path+'/delete/'+record.data.id+'\');"><img src="images/icon/delete.png" border="0"></a>');
     }
-
     // store
     var config = new Object({
         fields: this._field,
@@ -42,16 +41,22 @@ function Product() {
     var config = new Object({
         store: this.store.display,
         tbar: this.ptb.display,
-        columns: new Grid_Columns_Create(this)
+        columns: [
+            { id: 'id', dataIndex: 'id', header: 'Id', sortable: true },
+            { id: 'title', dataIndex: 'title', header: 'Nazwa Produktu', sortable: true },
+            { id: 'id_category', dataIndex: 'id_category', header: 'Kategoria', sortable: true },
+            { id: 'id_vendor', dataIndex: 'id_vendor', header: 'Producent', sortable: true },
+            { id: 'active', dataIndex: 'active', header: 'Aktywny', renderer: render_active_field , sortable: true },
+            { id: 'date_created', dataIndex: 'date_created', header: 'Data dodania', sortable: true },
+            { id: 'options', header: 'Opcje', renderer: this.option, sortable: false, menuDisabled: true }
+        ]
     });
     this.grid = new EditorGridPanel(); this.grid.init(config);
-
     // panel/load
     var config = new Object({items:[this.grid.display]});
     this.panel = new Panel(); this.panel.init(config);
     this.panel.display.render(Ext.get(this._id));
     this.store.display.load({params:{start:0,limit:_paging_limit}});
-
 }
 //
 var product = new Product();

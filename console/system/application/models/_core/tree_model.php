@@ -244,6 +244,35 @@ class Tree_Model extends Model {
 			}
 		}
         //
+        // get from warehouse article
+        //
+        if ($table == 'product') {
+            $query = $this->db->query("SELECT
+			`product_relations`.`id` as `mri`,
+			`product`.`id`,
+			`product`.`title`
+			FROM
+			`product_relations`
+			Left Join `product` ON `product`.`id` = `product_relations`.`id_element`
+			WHERE
+			`product_relations`.`id_tree` =  '".$id_tree."'
+			ORDER BY
+			`product_relations`.`position`");
+            foreach ($query->result() as $item) {
+                $record = array();
+                $record['id_relations'] = $item->mri;
+                $record['tree'] = $table;
+                $record['id'] = 'e'.$item->id;
+                $record['id_element'] = $item->id;
+                $record['text'] = $item->title .' (id='.$item->id.')';
+                $record['type'] = $table;
+                $record['genre'] = 'element';
+                $record['leaf'] = true;
+                $record['iconCls'] = 'page';
+                $nodes[] = $record;
+            }
+        }
+        //
 		// get from warehouse gallery
 		//
 		if ($table == 'warehouse_gallery') {

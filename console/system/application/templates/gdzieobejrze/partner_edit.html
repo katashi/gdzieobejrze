@@ -1,6 +1,6 @@
 <script type="text/javascript">{literal}
 
-function Partner_Add() {
+function partner_edit() {
 
     // var
     this._dir = '{/literal}{$_dir}{literal}';
@@ -9,14 +9,27 @@ function Partner_Add() {
     this._name = '{/literal}{$_name}{literal}';
     this._path = base_url+'/'+this._dir+':'+this._name;
     this._ptb_mode = 'default';
+    //
+    this.id = '{/literal}{$id}{literal}';
 
     // crud
-    this.add = function(obj) {
+    this.load = function(obj) {
+        this.panel.display.form.load({
+            method:'POST',
+            url:this._path+'/load/'+this.id,
+            success:function() {
+            },
+            failure:function () {
+                Ext.MessageBox.alert('Katashi', 'Wystąpił błąd');
+            }
+        });
+    }
+    this.edit = function(obj) {
         obj.panel.display.form.submit({
             method: 'POST',
-            url: this._path+'/add',
+            url: this._path+'/edit/'+this.id,
             success: function() {
-                if (administrator.store) { administrator.store.display.reload(); }
+                if (partner.store) { partner.store.display.reload(); }
                 Ext.MessageBox.alert('Katashi', 'Operacja zakończona poprawnie');
             },
             failure: function() {
@@ -102,13 +115,13 @@ function Partner_Add() {
             name: 'gm_icon_url',
             xtype: 'textfield'
         }],
-        buttons: new Form_Add_Button_Create(this)
+        buttons: new Form_Edit_Button_Create(this)
     });
     this.panel = new FormPanel(); this.panel.init(config);
     this.panel.display.render(Ext.get(this._id));
-
+    this.load(this);
 }
-var Partner_Add  = new Partner_Add();
+var partner_edit  = new partner_edit();
 //
 {/literal}</script>
 <div id="{$_id}"></div>

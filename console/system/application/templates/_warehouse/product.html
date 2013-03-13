@@ -1,20 +1,22 @@
+
 <script type="text/javascript">{literal}
 
-function Partner() {
+function Product() {
 
     // var
     this._dir = '{/literal}{$_dir}{literal}';
     this._field = JSON.parse('{/literal}{$field}{literal}');
     this._id = '{/literal}{$_id}{literal}';
     this._name = '{/literal}{$_name}{literal}';
-    this._path = base_url+'/'+this._dir+':'+this._name;
+    this._path = base_url+'/'+'gdzieobejrze'+':'+this._name;
     this._ptb_mode = 'default';
-
+    //
+    this.id = '{/literal}{$id}{literal}';
     // crud
     this.add = function(obj) {
         id = obj._id+'_add_'+Math.floor((Math.random()*999999999)+1);
         title = 'Dodaj';
-        path = obj._path+'/display_add';
+        path = obj._path+'/display_add/'+this.id;
         center.ui.tab_add(id, title, path);
     }
     this.edit = function(obj, id, user) {
@@ -24,17 +26,19 @@ function Partner() {
         center.ui.tab_add(id, title, path);
     }
     this.option = function(value,m,record,ri,ci,store) {
-        return String.format(  '<a href="javascript:Grid_Edit(\''+id+'\',\''+record.data.title+'\',\''+store.path+'/display_edit/'+record.data.id+'\');"><img src="images/icon/page_edit.png" border="0"></a> '+
-                               '<a href="javascript:Grid_Delete(\''+store.name+'\',\''+store.path+'/delete/'+record.data.id+'\');"><img src="images/icon/delete.png" border="0"></a>');
+        var id = 'article_edit_'+this.id;
+        var title = record.data.title;
+        return String.format(''+
+                '<a href="javascript:Grid_Edit(\''+id+'\',\''+title+'\',\''+store.path+'/display_edit/'+record.data.id+'\');"><img src="images/icon/page_edit.png" border="0"></a> '+
+                '<a href="javascript:Grid_Delete(\''+store.name+'\',\''+store.path+'/delete/'+record.data.id+'\',\'west_article\');"><img src="images/icon/delete.png" border="0"></a>');
     }
-
     // store
     var config = new Object({
         fields: this._field,
         id: this._name,
         name: this._name,
         path: this._path,
-        url: this._path+'/load_all'
+        url: this._path+'/load_all/'+this.id+',id_category'
     });
     this.store = new Store(); this.store.init(config);
 
@@ -45,12 +49,11 @@ function Partner() {
         tbar: this.ptb.display,
         columns: [
             { id: 'id', dataIndex: 'id', header: 'Id', sortable: true },
-            { id: 'title', dataIndex: 'title', header: 'Nazwa', sortable: true },
-            { id: 'company_address', dataIndex: 'address', header: 'Adres', sortable: true },
-            { id: 'company_zip', dataIndex: 'zip', header: 'Kod Pocztowy', sortable: true },
-            { id: 'company_city', dataIndex: 'city', header: 'Miasto', sortable: true },
-            { id: 'city', dataIndex: 'city', header: 'Miasto', sortable: true },
-            { id: 'date_added', dataIndex: 'date_added', header: 'Data dodania', sortable: true },
+            { id: 'title', dataIndex: 'title', header: 'Nazwa Produktu', sortable: true },
+            { id: 'id_category', dataIndex: 'id_category', header: 'Kategoria', sortable: true },
+            { id: 'id_vendor', dataIndex: 'id_vendor', header: 'Producent', sortable: true },
+            { id: 'active', dataIndex: 'active', header: 'Aktywny', renderer: render_active_field , sortable: true },
+            { id: 'date_created', dataIndex: 'date_created', header: 'Data dodania', sortable: true },
             { id: 'options', header: 'Opcje', renderer: this.option, sortable: false, menuDisabled: true }
         ]
     });
@@ -64,7 +67,7 @@ function Partner() {
 
 }
 //
-var partner = new Partner();
+var product = new Product();
 //
 {/literal}</script>
 <div id="{$_id}"></div>

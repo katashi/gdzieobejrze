@@ -24,7 +24,8 @@ function Product_Dict_Vendor() {
         center.ui.tab_add(id, title, path);
     }
     this.option = function(value,m,record,ri,ci,store) {
-        return String.format('<a href="javascript:Grid_Delete(\''+store.name+'\',\''+store.path+'/delete/'+record.data.id+'\');"><img src="images/icon/delete.png" border="0"></a>');
+        return String.format(  '<a href="javascript:Grid_Edit(\''+id+'\',\''+record.data.title+'\',\''+store.path+'/display_edit/'+record.data.id+'\');"><img src="images/icon/page_edit.png" border="0"></a> '+
+                               '<a href="javascript:Grid_Delete(\''+store.name+'\',\''+store.path+'/delete/'+record.data.id+'\');"><img src="images/icon/delete.png" border="0"></a>');
     }
 
     // store
@@ -54,7 +55,7 @@ function Product_Dict_Vendor() {
 
 }
 //
-var Product_Dict_Vendor = new Product_Dict_Vendor();
+var product_dict_vendor = new Product_Dict_Vendor();
 //
 {/literal}</script>
 <div id="{$_id}"></div>

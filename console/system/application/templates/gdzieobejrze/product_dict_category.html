@@ -7,7 +7,7 @@ function Product_Dict_Category() {
     this._field = JSON.parse('{/literal}{$field}{literal}');
     this._id = '{/literal}{$_id}{literal}';
     this._name = '{/literal}{$_name}{literal}';
-    this._path = base_url+'/'+this._dir+':'+this._name;
+    this._path = base_url+'/'+this._dir+':'+'product_dict_category';
     this._ptb_mode = 'default';
 
     // crud
@@ -24,7 +24,8 @@ function Product_Dict_Category() {
         center.ui.tab_add(id, title, path);
     }
     this.option = function(value,m,record,ri,ci,store) {
-        return String.format('<a href="javascript:Grid_Delete(\''+store.name+'\',\''+store.path+'/delete/'+record.data.id+'\');"><img src="images/icon/delete.png" border="0"></a>');
+        return String.format(  '<a href="javascript:Grid_Edit(\''+id+'\',\''+record.data.title+'\',\''+store.path+'/display_edit/'+record.data.id+'\');"><img src="images/icon/page_edit.png" border="0"></a> ');
+                     //          '<a href="javascript:Grid_Delete(\''+store.name+'\',\''+store.path+'/delete/'+record.data.id+'\');"><img src="images/icon/delete.png" border="0"></a>');
     }
 
     // store
@@ -42,19 +43,21 @@ function Product_Dict_Category() {
     var config = new Object({
         store: this.store.display,
         tbar: this.ptb.display,
-        columns: new Grid_Columns_Create(this)
+        columns: [
+            { id: 'id', dataIndex: 'id', header: 'Id', sortable: true },
+            { id: 'title', dataIndex: 'title', header: 'Nazwa', sortable: true },
+            { id: 'options', header: 'Opcje', renderer: this.option, sortable: false, menuDisabled: true }
+        ]
     });
     this.grid = new EditorGridPanel(); this.grid.init(config);
-
     // panel/load
     var config = new Object({items:[this.grid.display]});
     this.panel = new Panel(); this.panel.init(config);
     this.panel.display.render(Ext.get(this._id));
     this.store.display.load({params:{start:0,limit:_paging_limit}});
-
 }
 //
-var Product_Dict_Category = new Product_Dict_Category();
+var product_dict_category = new Product_Dict_Category();
 //
 {/literal}</script>
 <div id="{$_id}"></div>

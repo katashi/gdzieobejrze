@@ -14,7 +14,7 @@ class Main extends Controller {
 		ini_set('display_errors', true);
 		ini_set('log_errors', true);
 		ini_set('error_log', dirname(__FILE__) . '/../../../../error_console.txt');
-		//
+        //
         $this->include_controller('hub');
 		$this->include_controller('_core/administrator');
         // TEST WARTOSCI Z SESJI

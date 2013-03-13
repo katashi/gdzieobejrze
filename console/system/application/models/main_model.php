@@ -10,7 +10,7 @@ class Main_Model extends Model {
     function load_field() {
         return $this->db->list_fields($this->_name);
     }
-    function load_total() {
+    function load_total($id=null , $where = 'id') {
         //exception for partners
         $fields = $this->load_field();
         if(in_array('id_partner',$fields)){
@@ -18,17 +18,25 @@ class Main_Model extends Model {
                 $this->db->where('id_partner',$this->ci->session->userdata['administrator_id_partner']);
             }
         }
+        if(isset($id) && !empty($id)){
+            ($where == null ? $where = 'id':'');
+            $this->db->where($where,$id);
+        }
         // end exception
         $this->db->from($this->_name);
         return $this->db->count_all_results();
     }
-    function load_all() {
+    function load_all($id=null , $where = 'id') {
         //exception for partners
         $fields = $this->load_field();
         if(in_array('id_partner',$fields)){
             if(isset($this->ci->session->userdata['administrator_id_partner']) != 0){
                 $this->db->where('id_partner',$this->ci->session->userdata['administrator_id_partner']);
             }
+        }
+        if(isset($id) && !empty($id)){
+            ($where == null ? $where = 'id':'');
+            $this->db->where($where, $id);
         }
         // end exception
         $query = $this->db->get($this->_name);
@@ -67,7 +75,7 @@ class Main_Model extends Model {
         $this->db->update($this->_name, $_POST);
         return 1;
     }
-    function delete($id , $where = 'id') {
+    function delete($id) {
         //exception for partners
         $fields = $this->load_field();
         if(in_array('id_partner',$fields)){
@@ -76,7 +84,7 @@ class Main_Model extends Model {
             }
         }
         // end exception
-        $this->db->where($where, $id);
+        $this->db->where('id', $id);
         $query = $this->db->delete($this->_name);
         return 1;
     }
@@ -89,15 +97,16 @@ class Main_Model extends Model {
         }
     }
 
-/*  //
-    // active set
-    //
     function active_set($id, $state) {
         $this->db->where('id', $id);
         $this->db->set('active', $state);
-        $this->db->update($this->config_db_table_main);
+        $this->db->update($this->_name);
         return '{"success": true}';
     }
+/*  //
+    // active set
+    //
+
 
     //
     // suspend set

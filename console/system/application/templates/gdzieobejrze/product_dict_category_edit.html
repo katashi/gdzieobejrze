@@ -1,6 +1,6 @@
 <script type="text/javascript">{literal}
 
-function Product_Dict_Category_Add() {
+function product_dict_category_edit() {
 
     // var
     this._dir = '{/literal}{$_dir}{literal}';
@@ -9,12 +9,25 @@ function Product_Dict_Category_Add() {
     this._name = '{/literal}{$_name}{literal}';
     this._path = base_url+'/'+this._dir+':'+'product_dict_category';
     this._ptb_mode = 'default';
+    //
+    this.id = '{/literal}{$id}{literal}';
 
     // crud
-    this.add = function(obj) {
+    this.load = function(obj) {
+        this.panel.display.form.load({
+            method:'POST',
+            url:this._path+'/load/'+this.id,
+            success:function() {
+            },
+            failure:function () {
+                Ext.MessageBox.alert('Katashi', 'Wystąpił błąd');
+            }
+        });
+    }
+    this.edit = function(obj) {
         obj.panel.display.form.submit({
             method: 'POST',
-            url: this._path+'/add',
+            url: this._path+'/edit/'+this.id,
             success: function() {
                 if (product_dict_category.store) { product_dict_category.store.display.reload(); }
                 west_product.ui_tree.root.reload();
@@ -29,18 +42,19 @@ function Product_Dict_Category_Add() {
 
     // form
     var config = new Object({
-        items:  [{
+        items: [{
             fieldLabel: 'Tytuł',
             name: 'title',
             xtype: 'textfield'
         }],
-        buttons: new Form_Add_Button_Create(this)
+        buttons: new Form_Edit_Button_Create(this)
     });
     this.panel = new FormPanel(); this.panel.init(config);
     this.panel.display.render(Ext.get(this._id));
+    this.load(this);
 
 }
-var Product_Dict_Category_Add = new Product_Dict_Category_Add();
+var product_dict_category_edit  = new product_dict_category_edit();
 //
 {/literal}</script>
 <div id="{$_id}"></div>

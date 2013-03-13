@@ -14,6 +14,7 @@ class Product_Dict_Category extends Hub {
         $this->_response = 'json';
         //
         $this->load->model('main_model');
+        $this->load->model('_core/tree_model');
         $this->_model = $this->load->model($this->_path.'_model');
         //
         $this->ci->smarty->assign('_dir', $this->_dir);
@@ -22,4 +23,13 @@ class Product_Dict_Category extends Hub {
         $this->ci->smarty->assign('field', json_encode($this->_model->load_field()));
 	}
 
+    // crud
+    function add($id=null) {
+        $success = $this->add_save('product',0);
+        echo $success;
+    }
+    function add_save($table, $pid) {
+        $success = $this->tree_model->add_save($table, $pid);
+        echo $success;
+    }
 }

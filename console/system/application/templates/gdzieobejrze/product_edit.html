@@ -1,6 +1,6 @@
 <script type="text/javascript">{literal}
 
-function product_add() {
+function product_edit() {
 
     // var
     this._dir = '{/literal}{$_dir}{literal}';
@@ -9,12 +9,30 @@ function product_add() {
     this._name = '{/literal}{$_name}{literal}';
     this._path = base_url+'/'+this._dir+':'+this._name;
     this._ptb_mode = 'default';
+    //
+    this.id = '{/literal}{$id}{literal}';
 
     // crud
-    this.add = function(obj) {
+    this.load = function(obj) {
+        this.panel.display.form.load({
+            method:'POST',
+            url:this._path+'/load/'+this.id,
+            success:function() {
+                image1_update(obj.panel);
+                image2_update(obj.panel);
+                image3_update(obj.panel);
+                image4_update(obj.panel);
+                image5_update(obj.panel);
+            },
+            failure:function () {
+                Ext.MessageBox.alert('Katashi', 'Wystąpił błąd');
+            }
+        });
+    }
+    this.edit = function(obj) {
         obj.panel.display.form.submit({
             method: 'POST',
-            url: this._path+'/add',
+            url: this._path+'/edit/'+this.id,
             success: function() {
                 if (product.store) { product.store.display.reload(); }
                 Ext.MessageBox.alert('Katashi', 'Operacja zakończona poprawnie');
@@ -60,7 +78,7 @@ function product_add() {
         },{
             allowBlank: false,
             fieldLabel: 'Obraz1',
-            id: 'image_image_waa1',
+            id: 'image_image_wae1',
             name: 'userfile1',
             xtype: 'box',
             autoEl:{
@@ -77,7 +95,7 @@ function product_add() {
         },{
             allowBlank: false,
             fieldLabel: 'Obraz2',
-            id: 'image_image_waa2',
+            id: 'image_image_wae2',
             name: 'userfile2',
             xtype: 'box',
             autoEl:{
@@ -94,7 +112,7 @@ function product_add() {
         },{
             allowBlank: false,
             fieldLabel: 'Obraz3',
-            id: 'image_image_waa3',
+            id: 'image_image_wae3',
             name: 'userfile3',
             xtype: 'box',
             autoEl:{
@@ -111,7 +129,7 @@ function product_add() {
         },{
             allowBlank: false,
             fieldLabel: 'Obraz4',
-            id: 'image_image_waa4',
+            id: 'image_image_wae4',
             name: 'userfile4',
             xtype: 'box',
             autoEl:{
@@ -128,7 +146,7 @@ function product_add() {
         },{
             allowBlank: false,
             fieldLabel: 'Obraz5',
-            id: 'image_image_waa5',
+            id: 'image_image_wae5',
             name: 'userfile5',
             xtype: 'box',
             autoEl:{
@@ -139,64 +157,64 @@ function product_add() {
                 }]
             }
         }],
-        buttons: new Form_Add_Button_Create(this),
+        buttons: new Form_Edit_Button_Create(this),
         listeners: {
             afterRender: function(form) {
-                var img1 = form.findById('image_image_waa1').getEl();
+                var img1 = form.findById('image_image_wae1').getEl();
                 form.DropTarget1 = new Ext.dd.DropTarget(img1, {
                     copy: false,
                     ddGroup: 'media',
                     enabled: true,
                     notifyDrop: function(dd, e, data) {
-                        var field = form.findById('image_image_waa1');
+                        var field = form.findById('image_image_wae1');
                         field.update('<img src="../media/image/100x75/'+data.node.attributes.file_name+'" border="1">');
                         var field = form.findById('image1');
                         field.setValue(data.node.attributes.file_name);
                     }
                 });
-                var img2 = form.findById('image_image_waa2').getEl();
+                var img2 = form.findById('image_image_wae2').getEl();
                 form.DropTarget1 = new Ext.dd.DropTarget(img2, {
                     copy: false,
                     ddGroup: 'media',
                     enabled: true,
                     notifyDrop: function(dd, e, data) {
-                        var field = form.findById('image_image_waa2');
+                        var field = form.findById('image_image_wae2');
                         field.update('<img src="../media/image/100x75/'+data.node.attributes.file_name+'" border="1">');
                         var field = form.findById('image2');
                         field.setValue(data.node.attributes.file_name);
                     }
                 });
-                var img3 = form.findById('image_image_waa3').getEl();
+                var img3 = form.findById('image_image_wae3').getEl();
                 form.DropTarget1 = new Ext.dd.DropTarget(img3, {
                     copy: false,
                     ddGroup: 'media',
                     enabled: true,
                     notifyDrop: function(dd, e, data) {
-                        var field = form.findById('image_image_waa3');
+                        var field = form.findById('image_image_wae3');
                         field.update('<img src="../media/image/100x75/'+data.node.attributes.file_name+'" border="1">');
                         var field = form.findById('image3');
                         field.setValue(data.node.attributes.file_name);
                     }
                 });
-                var img4 = form.findById('image_image_waa4').getEl();
+                var img4 = form.findById('image_image_wae4').getEl();
                 form.DropTarget1 = new Ext.dd.DropTarget(img3, {
                     copy: false,
                     ddGroup: 'media',
                     enabled: true,
                     notifyDrop: function(dd, e, data) {
-                        var field = form.findById('image_image_waa4');
+                        var field = form.findById('image_image_wae4');
                         field.update('<img src="../media/image/100x75/'+data.node.attributes.file_name+'" border="1">');
                         var field = form.findById('image4');
                         field.setValue(data.node.attributes.file_name);
                     }
                 });
-                var img5 = form.findById('image_image_waa5').getEl();
+                var img5 = form.findById('image_image_wae5').getEl();
                 form.DropTarget1 = new Ext.dd.DropTarget(img5, {
                     copy: false,
                     ddGroup: 'media',
                     enabled: true,
                     notifyDrop: function(dd, e, data) {
-                        var field = form.findById('image_image_waa5');
+                        var field = form.findById('image_image_wae5');
                         field.update('<img src="../media/image/100x75/'+data.node.attributes.file_name+'" border="1">');
                         var field = form.findById('image5');
                         field.setValue(data.node.attributes.file_name);
@@ -207,9 +225,9 @@ function product_add() {
     });
     this.panel = new FormPanel(); this.panel.init(config);
     this.panel.display.render(Ext.get(this._id));
-
+    this.load(this);
 }
-var product_add = new product_add();
+var product_edit  = new product_edit();
 //
 {/literal}</script>
 <div id="{$_id}"></div>

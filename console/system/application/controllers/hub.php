@@ -20,13 +20,13 @@ class Hub extends Main {
         $field = $this->_model->load_field();
         echo '{"field":'.json_encode($field).'}';
     }
-    function load_total() {
-        $total = $this->_model->load_total();
+    function load_total($id=null, $where = null) {
+        $total = $this->_model->load_total($id,$where);
         echo '{"total":'.json_encode($total).'}';
     }
-    function load_all($id=null) {
-        $total = $this->_model->load_total($id);
-        $data = $this->_model->load_all($id);
+    function load_all($id=null, $where = null) {
+        $total = $this->_model->load_total($id,$where);
+        $data = $this->_model->load_all($id,$where);
         echo '{"total":'.json_encode($total).', "data":'.json_encode($data).'}';
     }
     function load($id=null) {

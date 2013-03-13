@@ -184,10 +184,10 @@ function Tree() {
 	// root create
 	this.root_create = function() {
 		this.root = new Ext.tree.AsyncTreeNode({
-			allowDrag: false,
-            allowDrop: false,
+			allowDrag: true,
+            allowDrop: true,
             disabled: true,
-            draggable: false,
+            draggable: true,
             editable: false,
 			expanded: true,
 			id: '-1',
