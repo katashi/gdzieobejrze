@@ -29,5 +29,21 @@ class Product_Model extends Main_Model {
         $this->db->insert('product_relations', $record);
         return 1;
     }
+    function delete($id) {
+        //exception for partners
+        $fields = $this->load_field();
+        if(in_array('id_partner',$fields)){
+            if(isset($this->ci->session->userdata['administrator_id_partner']) != 0){
+                $this->db->where('id_partner',$this->ci->session->userdata['administrator_id_partner']);
+            }
+        }
+        // end exception
+        $this->db->where('id', $id);
+        $query = $this->db->delete($this->_name);
+        //relation
+        $this->db->where('id_element', $id);
+        $query = $this->db->delete('product_relations');
 
+        return 1;
+    }
 }
