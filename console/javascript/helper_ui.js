@@ -70,22 +70,4 @@ function Helper_Ui() {
     this.pretty_show_video = function (path, title) {
         $.prettyPhoto.open(path);
     }
-
-    this.open_product_window = function(src){
-        var window = new Ext.Window({
-            title: 'Product',
-            width: 500,
-            height:300,
-            minWidth: 300,
-            minHeight: 200,
-            layout: 'fit',
-            plain:true,
-            bodyStyle:'padding:5px;',
-            buttonAlign:'center',
-            bodyCfg: {
-                src: src ,
-            }
-        });
-        window.show();
-    }
 }

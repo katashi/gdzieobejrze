@@ -268,9 +268,13 @@ function Tree() {
             }
             //
             if (node.attributes['type'] == 'product') {
-                tab_url = base_url +'/'+ this.config['controller'] + node.attributes['type'] +'/display_edit/'+ node.attributes['id_element'];
-                alert(tab_url);
-                new Helper_Ui().open_product_window(tab_url);
+                // all major elements which have to be opened in tab
+                tab_selected_id = node.attributes['id_element']
+                tab_selected_tree = node.attributes['type'];
+                tab_id = node.attributes['type'] + '_edit_' + node.attributes['id_element'];
+                tab_title = node.attributes['text'];
+                tab_url = base_url +'/'+ this.config['controller'] + node.attributes['type'] +'/display_show/'+ node.attributes['id_element'];
+                center.ui.tab_add(tab_id, tab_title, tab_url);
             }else if (node.attributes['type'] == 'image') {
                 new Helper_Ui().pretty_show(node.attributes['file_name'],node.attributes['orig_name']);
             } else {

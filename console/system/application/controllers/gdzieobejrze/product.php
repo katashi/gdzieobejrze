@@ -22,6 +22,14 @@ class Product extends Hub {
         $this->ci->smarty->assign('_name', $this->_name);
         $this->ci->smarty->assign('field', json_encode($this->_model->load_field()));
 	}
+    function display_show($id=null) {
+        //for information in view
+        if(isset($this->ci->session->userdata['administrator_id_partner']) && $this->ci->session->userdata['administrator_id_partner']!= 0){
+            $this->ci->smarty->assign('administrator_id_partner',$this->ci->session->userdata['administrator_id_partner']);
+        }
+        $this->ci->smarty->assign('id', $id);
+        $this->ci->smarty->display($this->_path.'_show.html');
+    }
 
     function add($id=null) {
         $success = $this->_model->add($id);
