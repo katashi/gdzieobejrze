@@ -27,7 +27,7 @@ function West_Product() {
 		//
 		//
 		var config = new Object({
-            controller: '_warehouse:',
+            controller: 'gdzieobejrze:',
 			dataUrl: base_url+'/_core:tree/tree_create/product',
 			ddGroup: 'product',
             //ddGroupExtended: 'website',

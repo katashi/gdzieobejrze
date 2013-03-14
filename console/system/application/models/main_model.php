@@ -59,6 +59,13 @@ class Main_Model extends Model {
     }
     // crud
     function add() {
+        $fields = $this->load_field();
+        if(in_array('date_added',$fields)){
+            $_POST['date_added'] = date("Y-m-d H:i:s");
+        }
+        if(in_array('date_created',$fields)){
+            $_POST['date_created'] = date("Y-m-d H:i:s");
+        }
         $this->db->insert($this->_name, $_POST);
         return 1;
     }
@@ -69,6 +76,10 @@ class Main_Model extends Model {
             if(isset($this->ci->session->userdata['administrator_id_partner']) != 0){
                 $this->db->where('id_partner',$this->ci->session->userdata['administrator_id_partner']);
             }
+        }
+        $fields = $this->load_field();
+        if(in_array('date_last_modified',$fields)){
+            $_POST['date_last_modified'] = date("Y-m-d H:i:s");
         }
         // end exception
         $this->db->where($where, $id);

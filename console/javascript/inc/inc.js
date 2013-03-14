@@ -85,6 +85,28 @@ function render_active_field(value, p, record) {
     }
 }
 
+function category_all_store(obj){
+    // store
+    var fields = new Array('id', 'title');
+    var config = new Object({
+        fields: fields,
+        format: 'json',
+        id: 'category_all_store',
+        url: base_url+'/'+'gdzieobejrze'+':product_dict_category'+'/load_all'
+    });
+    return config;
+}
+function vendor_all_store(obj){
+    // store
+    var fields = new Array('id', 'title');
+    var config = new Object({
+        fields: fields,
+        format: 'json',
+        id: 'vendor_all_store',
+        url: base_url+'/'+'gdzieobejrze'+':product_dict_vendor'+'/load_all'
+    });
+    return config;
+}
 // function dedicated to create custom
 // functionalities in grid paging toolbar
 // we can put it here various themes (configs)

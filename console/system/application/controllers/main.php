@@ -32,9 +32,17 @@ class Main extends Controller {
         $this->administrator_authorised = $this->administrator->session_verify();
         $this->template = ($this->administrator_authorised) ? 'main' : 'login';
         // prepare js injection
-        $js0 = $this->js_prepare_file('javascript/configuration.js');
+        if(isset($this->session->userdata['administrator_id_partner']) && $this->session->userdata['administrator_id_partner']!= 0){
+            $js0 = $this->js_prepare_file('javascript/configuration_partner.js');
+        }else{
+            $js0 = $this->js_prepare_file('javascript/configuration_admin.js');
+        }
         $this->smarty->assign('js0', $js0);
-        $js1 = $this->js_prepare_directory('javascript/component');
+        if(isset($this->session->userdata['administrator_id_partner']) && $this->session->userdata['administrator_id_partner']!= 0){
+            $js1 = $this->js_prepare_directory('javascript/component_partner');
+        }else{
+            $js1 = $this->js_prepare_directory('javascript/component_admin');
+        }
         $this->smarty->assign('js1', $js1);
         $js2 = $this->js_prepare_directory('javascript/module');
         $this->smarty->assign('js2', $js2);

@@ -3,6 +3,10 @@ class Hub extends Main {
 
     // display
     function display($id=null) {
+        //for information in view
+        if(isset($this->ci->session->userdata['administrator_id_partner']) && $this->ci->session->userdata['administrator_id_partner']!= 0){
+            $this->ci->smarty->assign('administrator_id_partner',$this->ci->session->userdata['administrator_id_partner']);
+        }
         $this->ci->smarty->assign('id', $id);
         $this->ci->smarty->display($this->_path.'.html');
     }
