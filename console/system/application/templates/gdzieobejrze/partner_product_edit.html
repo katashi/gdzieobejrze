@@ -2,7 +2,7 @@
     literal
 }
 
-function product_edit() {
+function partner_product_edit() {
 
     // var
     this._dir = '{/literal}{$_dir}{literal}';
@@ -37,7 +37,7 @@ function product_edit() {
             url:this._path + '/edit/' + this.id,
             success:function () {
                 if (product.store) {
-                    product.store.display.reload();
+                    partner_product.store.display.reload();
                 }
                 west_product.ui_tree.root.reload();
                 west_product.ui_tree.path_expand();
@@ -48,12 +48,10 @@ function product_edit() {
             }
         });
     }
-
     // init
     config = category_all_store(this);
     var category_store = new Store();
     category_store.init(config);
-
     // init
     config = vendor_all_store(this);
     var vendor_store = new Store();
@@ -287,7 +285,7 @@ function product_edit() {
     this.panel.display.render(Ext.get(this._id));
     this.load(this);
 }
-var product_edit = new product_edit();
+var partner_product_edit = new partner_product_edit();
 //
 {
     /literal}</script>

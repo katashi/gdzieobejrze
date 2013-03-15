@@ -1,4 +1,5 @@
-﻿
+﻿﻿
+ 
  a, abbr, acronym, address, applet, article, aside, audio, b, blockquote, big, body, center, canvas, caption, cite, code, command, datalist, dd, del, details, dfn, dl, div, dt, em, embed, fieldset, figcaption, figure, font, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, keygen, label, legend, li, meter, nav, object, ol, output, p, pre, progress, q, s, samp, section, small, span, source, strike, strong, sub, sup, table, tbody, tfoot, thead, th, tr, tdvideo, tt, u, ul, var {
     background: none repeat scroll 0 0 transparent;
     border: 0 none;
@@ -39,7 +40,6 @@ ul {
     float: left;
 
 }
-
 
 .sf-menu > li > a {
     color: #0e799b !important;
@@ -95,7 +95,6 @@ padding-right:10px;
     width: 600px;
    right: 0;
     top: 1px;
-    z-index: 100;
 }
 
 #line {
@@ -580,12 +579,11 @@ width:62px; background-image:url('../images/middle.png'); background-repeat:no-r
 
 #range5
 {
-width: 100px; margin-bottom:10px; float:left;
+"width:96px; margin-bottom:10px; float:left;
 }
 
 #mapa {
-float:right;width:100%; position:fixed; height:100%; margin-left:295px; overflow:hidden;text-align: center;
- min-height: 100%; z-index: 99; 
+float:right;width:100%; z-index:-100; position:fixed; height:100%; margin-left:295px; overflow:hidden;text-align: center;
 }
 
 
@@ -1059,7 +1057,7 @@ float: left;
 }
 
 .auto-style45 {
-		margin: 211px 3px;
+		margin: 211px 2px;
 	}
 #slider-box {
 float:left; width:155px; height:185px; border-bottom:1px #004e6f solid; margin:0; padding:5px;
@@ -1094,7 +1092,7 @@ height:20px; margin-top:5px; margin-left:45px; float:left;}
 
 #sp1
 {
-float: right;    height: 100%;    margin-bottom: 0;    min-height: 100%;    position: fixed;    right: -364px;    width: 412px;    z-index: 100;
+float: right;    height: 100%;    margin-bottom: 0;    min-height: 100%;    position: fixed;    right: 0;    width: 412px;    z-index: 100; 
 }
 
 #sp2

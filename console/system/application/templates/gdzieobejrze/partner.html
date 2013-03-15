@@ -45,11 +45,11 @@ function Partner() {
         tbar: this.ptb.display,
         columns: [
             { id: 'id', dataIndex: 'id', header: 'Id', sortable: true },
-            { id: 'title', dataIndex: 'title', header: 'Nazwa', sortable: true },
-            { id: 'company_address', dataIndex: 'address', header: 'Adres', sortable: true },
-            { id: 'company_zip', dataIndex: 'zip', header: 'Kod Pocztowy', sortable: true },
-            { id: 'company_city', dataIndex: 'city', header: 'Miasto', sortable: true },
-            { id: 'city', dataIndex: 'city', header: 'Miasto', sortable: true },
+            { id: 'title', dataIndex: 'title', header: 'Nazwa Sklepu', sortable: true },
+            { id: 'company_name', dataIndex: 'company_name', header: 'Nazwa Firmy', sortable: true },
+            { id: 'company_address', dataIndex: 'company_address', header: 'Adres', sortable: true },
+            { id: 'company_zip', dataIndex: 'company_zip', header: 'Kod Pocztowy', sortable: true },
+            { id: 'company_city', dataIndex: 'company_city', header: 'Miasto', sortable: true },
             { id: 'date_added', dataIndex: 'date_added', header: 'Data dodania', sortable: true },
             { id: 'options', header: 'Opcje', renderer: this.option, sortable: false, menuDisabled: true }
         ]

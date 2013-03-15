@@ -1,8 +1,6 @@
-<script type="text/javascript">{
-    literal
-}
+<script type="text/javascript">{literal}
 
-function product_edit() {
+function product_show() {
 
     // var
     this._dir = '{/literal}{$_dir}{literal}';
@@ -77,8 +75,8 @@ function product_edit() {
                 store:category_store,
                 triggerAction:'all',
                 width:350,
-                valueField:'id',
-                xtype:'combo'
+                valueField:'title',
+                xtype:'textfield'
             },
             {
                 allowBlank:false,
@@ -90,7 +88,8 @@ function product_edit() {
                 store:vendor_store,
                 triggerAction:'all',
                 width:350,
-                valueField:'id',
+                label:'title',
+                valueField:'title',
                 xtype:'combo'
             },
             {
@@ -215,79 +214,14 @@ function product_edit() {
                     ]
                 }
             }
-        ],
-        buttons:new Form_Edit_Button_Create(this),
-        listeners:{
-            afterRender:function (form) {
-                var img1 = form.findById('image_image_wae1').getEl();
-                form.DropTarget1 = new Ext.dd.DropTarget(img1, {
-                    copy:false,
-                    ddGroup:'media',
-                    enabled:true,
-                    notifyDrop:function (dd, e, data) {
-                        var field = form.findById('image_image_wae1');
-                        field.update('<img src="../media/image/100x75/' + data.node.attributes.file_name + '" border="1">');
-                        var field = form.findById('image1');
-                        field.setValue(data.node.attributes.file_name);
-                    }
-                });
-                var img2 = form.findById('image_image_wae2').getEl();
-                form.DropTarget1 = new Ext.dd.DropTarget(img2, {
-                    copy:false,
-                    ddGroup:'media',
-                    enabled:true,
-                    notifyDrop:function (dd, e, data) {
-                        var field = form.findById('image_image_wae2');
-                        field.update('<img src="../media/image/100x75/' + data.node.attributes.file_name + '" border="1">');
-                        var field = form.findById('image2');
-                        field.setValue(data.node.attributes.file_name);
-                    }
-                });
-                var img3 = form.findById('image_image_wae3').getEl();
-                form.DropTarget1 = new Ext.dd.DropTarget(img3, {
-                    copy:false,
-                    ddGroup:'media',
-                    enabled:true,
-                    notifyDrop:function (dd, e, data) {
-                        var field = form.findById('image_image_wae3');
-                        field.update('<img src="../media/image/100x75/' + data.node.attributes.file_name + '" border="1">');
-                        var field = form.findById('image3');
-                        field.setValue(data.node.attributes.file_name);
-                    }
-                });
-                var img4 = form.findById('image_image_wae4').getEl();
-                form.DropTarget1 = new Ext.dd.DropTarget(img3, {
-                    copy:false,
-                    ddGroup:'media',
-                    enabled:true,
-                    notifyDrop:function (dd, e, data) {
-                        var field = form.findById('image_image_wae4');
-                        field.update('<img src="../media/image/100x75/' + data.node.attributes.file_name + '" border="1">');
-                        var field = form.findById('image4');
-                        field.setValue(data.node.attributes.file_name);
-                    }
-                });
-                var img5 = form.findById('image_image_wae5').getEl();
-                form.DropTarget1 = new Ext.dd.DropTarget(img5, {
-                    copy:false,
-                    ddGroup:'media',
-                    enabled:true,
-                    notifyDrop:function (dd, e, data) {
-                        var field = form.findById('image_image_wae5');
-                        field.update('<img src="../media/image/100x75/' + data.node.attributes.file_name + '" border="1">');
-                        var field = form.findById('image5');
-                        field.setValue(data.node.attributes.file_name);
-                    }
-                });
-            }
-        }
+        ]
     });
     this.panel = new FormPanel();
     this.panel.init(config);
     this.panel.display.render(Ext.get(this._id));
     this.load(this);
 }
-var product_edit = new product_edit();
+var product_show = new product_show();
 //
 {
     /literal}</script>

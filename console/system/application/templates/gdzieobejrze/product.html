@@ -36,8 +36,23 @@ function Product() {
     });
     this.store = new Store(); this.store.init(config);
 
-    // grid
-    this.ptb = new PagingToolBar(); this.ptb.init(Ptb_Create(this));
+    {/literal}
+        {if $administrator_id_partner != 0}
+            {literal}
+            var config = new Object({
+                store:this.store.display,
+                items:[]
+            });
+            // grid
+            this.ptb = new PagingToolBar(); this.ptb.init(config);
+            {/literal}
+                {else}
+                {literal}
+                this.ptb = new PagingToolBar(); this.ptb.init(Ptb_Create(this));
+                {/literal}
+                    {/if}
+
+                        {literal}
     var config = new Object({
         store: this.store.display,
         tbar: this.ptb.display,
@@ -48,7 +63,13 @@ function Product() {
             { id: 'id_vendor', dataIndex: 'id_vendor', header: 'Producent', sortable: true },
             { id: 'active', dataIndex: 'active', header: 'Aktywny', renderer: render_active_field , sortable: true },
             { id: 'date_created', dataIndex: 'date_created', header: 'Data dodania', sortable: true },
+            {/literal}
+            {if $administrator_id_partner == 0}
+            {literal}
             { id: 'options', header: 'Opcje', renderer: this.option, sortable: false, menuDisabled: true }
+            {/literal}
+            {/if}
+            {literal}
         ]
     });
     this.grid = new EditorGridPanel(); this.grid.init(config);

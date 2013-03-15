@@ -17,6 +17,8 @@ function product_add() {
             url: this._path+'/add',
             success: function() {
                 if (product.store) { product.store.display.reload(); }
+                west_product.ui_tree.root.reload();
+                west_product.ui_tree.path_expand();
                 Ext.MessageBox.alert('Katashi', 'Operacja zakończona poprawnie');
             },
             failure: function() {
@@ -24,21 +26,46 @@ function product_add() {
             }
         });
     }
+    // init
+    config = category_all_store(this);
+    var category_store = new Store();
+    category_store.init(config);
 
+    // init
+    config = vendor_all_store(this);
+    var vendor_store = new Store();
+    vendor_store.init(config);
     // form
     var config = new Object({
         items: [{
+            allowBlank: false,
             fieldLabel: 'Tytuł',
             name: 'title',
             xtype: 'textfield'
         },{
+            allowBlank: false,
+            displayField: 'title',
+            editable: false,
             fieldLabel: 'Kategoria',
+            hiddenName: 'id_category',
             name: 'id_category',
-            xtype: 'textfield'
+            store: category_store,
+            triggerAction: 'all',
+            width: 350,
+            valueField: 'id',
+            xtype: 'combo'
         },{
+            allowBlank: false,
+            displayField: 'title',
+            editable: false,
             fieldLabel: 'Producent',
+            hiddenName: 'id_vendor',
             name: 'id_vendor',
-            xtype: 'textfield'
+            store: vendor_store,
+            triggerAction: 'all',
+            width: 350,
+            valueField: 'id',
+            xtype: 'combo'
         },{
             fieldLabel: 'Nagłówek',
             name: 'text1',

@@ -70,5 +70,4 @@ function Helper_Ui() {
     this.pretty_show_video = function (path, title) {
         $.prettyPhoto.open(path);
     }
-
 }
