@@ -50,12 +50,26 @@ function Partner_Product() {
         columns: [
             { id: 'id', dataIndex: 'id', header: 'Id', sortable: true },
             { id: 'title', dataIndex: 'title', header: 'Nazwa Produktu', sortable: true },
-            { id: 'id_category', dataIndex: 'id_category', header: 'Kategoria', sortable: true },
-            { id: 'id_vendor', dataIndex: 'id_vendor', header: 'Producent', sortable: true },
+            { id: 'category_title', dataIndex: 'category_title', header: 'Kategoria', sortable: true },
+            { id: 'vendor_title', dataIndex: 'vendor_title', header: 'Producent', sortable: true },
             { id: 'active', dataIndex: 'active', header: 'Aktywny', renderer: render_active_field , sortable: true },
             { id: 'date_created', dataIndex: 'date_created', header: 'Data dodania', sortable: true },
             { id: 'options', header: 'Opcje', renderer: this.option, sortable: false, menuDisabled: true }
-        ]
+        ],
+        listeners:{
+            render:function (form) {
+
+                form.DropTarget = new Ext.dd.DropTarget(form.getEl(), {
+                    copy:false,
+                    ddGroup:'product',
+                    enabled:true,
+                    notifyDrop:function (dd, e, data) {
+                      alert('wykryto dropa');
+                    }
+                });
+            }
+        }
+
     });
     this.grid = new EditorGridPanel(); this.grid.init(config);
     // panel/load

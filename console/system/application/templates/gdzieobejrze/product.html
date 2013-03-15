@@ -23,7 +23,18 @@ function Product() {
         center.ui.tab_add(id, title, path);
     }
     this.option = function(value,m,record,ri,ci,store) {
-        return String.format(  '<a href="javascript:Grid_Edit(\''+id+'\',\''+record.data.title+'\',\''+store.path+'/display_edit/'+record.data.id+'\');"><img src="images/icon/page_edit.png" border="0"></a> '+
+        var id = 'article_edit_'+this.id;
+        var title = record.data.title;
+        if (record.data.active == 0 ) {
+            active_icon = 'cancel.png';
+            active_set = 1;
+        } else {
+            active_icon = 'accept.png';
+            active_set = 0;
+        }
+        var active_url = store.path+'/active_set/'+record.data.id+','+active_set;
+        return String.format(  '<a href="javascript:Grid_Active(\''+store.path+'/active_set/'+record.data.id+','+active_set+'\',\''+store.name+'\');"><img src="images/icon/'+active_icon+'" border="0"></a> '+
+                               '<a href="javascript:Grid_Edit(\''+id+'\',\''+record.data.title+'\',\''+store.path+'/display_edit/'+record.data.id+'\');"><img src="images/icon/page_edit.png" border="0"></a> '+
                                '<a href="javascript:Grid_Delete(\''+store.name+'\',\''+store.path+'/delete/'+record.data.id+'\');"><img src="images/icon/delete.png" border="0"></a>');
     }
     // store

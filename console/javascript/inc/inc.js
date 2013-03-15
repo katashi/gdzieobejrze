@@ -27,6 +27,10 @@ function Grid_Delete(objName, url, tree) {
     var obj = eval(objName);
     new Helper_Delete().delete_confirm(url, 'grid', obj.store, tree);
 }
+function Grid_Active(url, objName) {
+    var obj = eval(objName);
+    new Helper_Ui().url_call(url, 'grid', obj.store, null);
+}
 
 // function dedicated to create add form based
 // on elements provided straight from database
@@ -84,7 +88,6 @@ function render_active_field(value, p, record) {
         return String.format('Nie');
     }
 }
-
 function category_all_store(obj){
     // store
     var fields = new Array('id', 'title');
