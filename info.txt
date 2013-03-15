@@ -17,3 +17,10 @@ Typ bazy: MySQL 5.0
 Adres serwera baz danych: sql.knsdes.nazwa.pl
 Port serwera baz danych: 3306
 Panel zarz¹dzania baz¹ danych: https://mysql.nazwa.pl/
+
+GOOGLEMAPS
+API key: AIzaSyCOT0jFTVnhxf2GhgSsnfSY8L251FRRC6w
+Referers: Any referer allowed
+Activated on: Dec 31, 2012 7:05 AM
+Activated by: mojekaraiby@gmail.com
+!!! Nalezy podmienic danymi Klienta/Klientki

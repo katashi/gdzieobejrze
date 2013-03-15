@@ -80,14 +80,7 @@ function Form_Edit_Button_Create(obj) {
     button.push(tmp);
     return button;
 }
-//function to render field active yes or no
-function render_active_field(value, p, record) {
-    if (value == 1) {
-        return String.format('Tak');
-    } else {
-        return String.format('Nie');
-    }
-}
+
 function category_all_store(obj){
     // store
     var fields = new Array('id', 'title');
@@ -160,7 +153,7 @@ function Ptb_Create(obj) {
     return config;
 }
 
-// image_update for edition
+// custom functions (Robert Osiadacz) image_update for edition / render active
 function image1_update(obj) {
     var form = obj.display;
     var image = form.getForm().findField('image1').getValue();
@@ -201,4 +194,10 @@ function image5_update(obj) {
         image_image.update('<img src="../media/image/100x75/' + image + '" border="1">');
     }
 }
-
+function render_active_field(value, p, record) {
+    if (value == 1) {
+        return String.format('Tak');
+    } else {
+        return String.format('Nie');
+    }
+}
