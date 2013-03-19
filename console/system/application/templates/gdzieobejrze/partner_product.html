@@ -58,18 +58,43 @@ function Partner_Product() {
         ],
         listeners:{
             render:function (form) {
-
                 form.DropTarget = new Ext.dd.DropTarget(form.getEl(), {
                     copy:false,
                     ddGroup:'product',
                     enabled:true,
                     notifyDrop:function (dd, e, data) {
-                      alert('wykryto dropa');
+                        if(data.node.attributes.genre == 'element'){
+                        var url = base_url+'/gdzieobejrze:partner_product/add_partner_product';
+                        var params = 'id_product='+data.node.attributes.id_element;
+                        Ext.Ajax.request({
+                            method: 'POST',
+                            params: params,
+                            timeout: 1000,
+                            url: url,
+                            success: function(response, request) {
+                                var obj = JSON.parse(response.responseText);
+                                if(obj.success == true){
+                                    Ext.MessageBox.alert('Informacja', 'Dodano produkt do twojego sklepu');
+                                    if (partner_product.store) { partner_product.store.display.reload(); }
+                                }else{
+                                    if(obj.data.message == 'product_exist'){
+                                        Ext.MessageBox.alert('Informacja', 'Podany produkt istnieje już na twoim sklepie.');
+                                    }else{
+                                        Ext.MessageBox.alert('Informacja', 'Wystąpił problem z dodaniem produktu.');
+                                    }
+                                }
+                            },
+                            failure:function() {
+                                Ext.MessageBox.alert('Informacja', 'Błąd z połączeniem');
+                            }
+                        });
+                        }else{
+                            Ext.MessageBox.alert('Informacja', 'Na sklep możesz przenosić tylko produkty.');
+                        }
                     }
                 });
             }
         }
-
     });
     this.grid = new EditorGridPanel(); this.grid.init(config);
     // panel/load

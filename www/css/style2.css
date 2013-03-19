@@ -1125,3 +1125,13 @@ overflow:hidden; display:block; width:300px; margin:0 0 15px 21px;
 {
 	border="0" ;
 }
+#popupwindow {
+    background-color: #3D3D3D;
+    background-image: none;
+    height: 100%;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 200;
+}

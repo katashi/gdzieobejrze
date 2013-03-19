@@ -4,13 +4,14 @@ class Partner_Product_Model extends Main_Model {
 
     function Partner_Product_Model() {
         // Call the Model constructor
+        $this->_name = 'partner_product';
         parent::Model();
         //
         if (isset($this->ci)) {
             $this->db = $this->ci->db;
         }
         //
-        $this->table_name = 'partner_product';
+
     }
 
     // load
@@ -34,13 +35,13 @@ class Partner_Product_Model extends Main_Model {
             $this->db->where($where, $id);
         }
         // end exception
-        $this->db->select($this->table_name . '.*,
+        $this->db->select($this->_name . '.*,
                             product_tree.title as category_title,
                             product_dict_vendor.title as vendor_title,
                             product.title as title,
                             product.text1 as text1');
-        $this->db->join('product', $this->table_name . '.id_product = product.id', 'left');
-        $this->db->join('product_tree', $this->table_name . '.id_category = product_tree.id', 'left');
+        $this->db->join('product', $this->_name . '.id_product = product.id', 'left');
+        $this->db->join('product_tree', $this->_name . '.id_category = product_tree.id', 'left');
         $this->db->join('product_dict_vendor', 'product.id_vendor = product_dict_vendor.id', 'left');
         $this->db->from($this->_name);
         return $this->db->count_all_results();
@@ -59,13 +60,13 @@ class Partner_Product_Model extends Main_Model {
             $this->db->where($where, $id);
         }
         // end exception
-        $this->db->select($this->table_name . '.*,
+        $this->db->select($this->_name . '.*,
                             product_tree.title as category_title,
                             product_dict_vendor.title as vendor_title,
                             product.title as title,
                             product.text1 as text1');
-        $this->db->join('product', $this->table_name . '.id_product = product.id', 'left');
-        $this->db->join('product_tree', $this->table_name . '.id_category = product_tree.id', 'left');
+        $this->db->join('product', $this->_name . '.id_product = product.id', 'left');
+        $this->db->join('product_tree', $this->_name . '.id_category = product_tree.id', 'left');
         $this->db->join('product_dict_vendor', 'product.id_vendor = product_dict_vendor.id', 'left');
         $query = $this->db->get($this->_name);
         $record = $query->result_array();
@@ -74,7 +75,7 @@ class Partner_Product_Model extends Main_Model {
 
     function load($id, $where = 'id') {
         // end exception
-        $this->db->select($this->table_name . '.*,
+        $this->db->select($this->_name . '.*,
                             product_tree.title as category_title,
                             product_dict_vendor.title as vendor_title,
                             product.title as title,
@@ -85,8 +86,8 @@ class Partner_Product_Model extends Main_Model {
                             product.image4 as image4,
                             product.image5 as image5,'
         );
-        $this->db->join('product', $this->table_name . '.id_product = product.id', 'left');
-        $this->db->join('product_tree', $this->table_name . '.id_category = product_tree.id', 'left');
+        $this->db->join('product', $this->_name . '.id_product = product.id', 'left');
+        $this->db->join('product_tree', $this->_name . '.id_category = product_tree.id', 'left');
         $this->db->join('product_dict_vendor', 'product.id_vendor = product_dict_vendor.id', 'left');
         //exception for partners
         $fields = $this->load_field();
@@ -96,7 +97,7 @@ class Partner_Product_Model extends Main_Model {
             }
         }
         // end exception
-        $this->db->where('partner_product.'.$where, $id);
+        $this->db->where('partner_product.' . $where, $id);
         $query = $this->db->get($this->_name);
         $record = $query->row_array();
         return $record;
@@ -145,6 +146,15 @@ class Partner_Product_Model extends Main_Model {
         $this->db->where('id', $id);
         $query = $this->db->delete($this->_name);
         return 1;
+    }
+
+    function check_product_exist($id_product,$id_partner) {
+        // end exception
+        $this->db->where('id_product', $id_product);
+        $this->db->where('id_partner', $id_partner);
+        $query = $this->db->get($this->_name);
+        $record = $query->row_array();
+        return $record;
     }
 
     // db query modifier

@@ -21,31 +21,33 @@
             <img alt="logo Gdzie Obejrze" height="111" src="{$site_url}images/logo-gdzie-obejrze.png" width="153"/><br/>
             <span id="logo-napis">  gdzie<span>obejrze</span>.pl</span><br/>
             <br/>
-            <div id="slogan"> Contrary to popular belief, Lorem Ipsum.
+            <div id="slogan" style="height:40px"><p style="display:none"> Contrary to popular belief, Lorem Ipsum.</p>
             </div>
             <form id="searchform" method="post" action="{$site_url}index.php/main/run/map">
             <div id="boxes">
                 <div id="box1" style="">Znajdź przedmiot<br/>
-                    <input name="query" onfocus="if(this.value=='Samsung LCD 43 HD') this.value='';" onblur="if(this.value=='') this.value='Samsung LCD 43 HD';" value="Samsung LCD 43 HD"/><a href="#" class="button">Wybierz z kategorii </a>
+                    <input id="query" name="query" onfocus="if(this.value=='Samsung LCD 43 HD') this.value='';" onblur="if(this.value=='') this.value='Samsung LCD 43 HD';" value="Samsung LCD 43 HD"/><a href="#" class="button">Wybierz z kategorii </a>
                 </div>
-                <div id="box2" style="">Podaj lokalizację<input name="localization"
-                        onfocus="if(this.value=='Bez lokalizacji') this.value='';" onblur="if(this.value=='') this.value='Bez lokalizacji';" value="Bez lokalizacji"/>
+                <div id="box2" style="">Podaj lokalizację
+                    <input id="localization" name="localization" onfocus="if(this.value=='Bez lokalizacji') this.value='';" onblur="if(this.value=='') this.value='Bez lokalizacji';" value="Bez lokalizacji"/>
                 </div>
                 <div id="box3" style="">Wybierz zasięg poszukiwań
                     <div class="button-holder">
-                        <input type="radio" id="radio-1-1" name="radio-distance" value="1" class="regular-radio" checked/><label for="radio-1-1"></label>&nbsp;1km &nbsp;&nbsp;
-                        <input type="radio" id="radio-1-2" name="radio-distance" value="5" class="regular-radio"/><label for="radio-1-2"></label>&nbsp;5 km&nbsp;&nbsp;
-                        <input type="radio" id="radio-1-4" name="radio-distance" value="15" class="regular-radio"/><label for="radio-1-4"></label>&nbsp;15 km
-                        <div style="float:right"><input name="km_distance" onfocus="if(this.value=='Zasięg w km') this.value='';" onblur="if(this.value=='') this.value='Zasięg w km';" value="Zasięg w km"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </form>
-            <div id="boxes-lines">
-                <a href="javascript:void(0);" onclick="submit('searchform')">
-                    <img id="tras" alt="szukaj" height="58" src="{$site_url}images/trans.png" width="210"/></a></div>
+                        <input type="radio" id="radio-1-1" value="1" name="km_distance_input" class="regular-radio" checked/><label for="radio-1-1"></label>&nbsp;1km &nbsp;&nbsp;
+                        <input type="radio" id="radio-1-2" value="5" name="km_distance_input" class="regular-radio"/><label for="radio-1-2"></label>&nbsp;5 km&nbsp;&nbsp;
+                        <input type="radio" id="radio-1-3" value="15" name="km_distance_input" class="regular-radio"/><label for="radio-1-3"></label>&nbsp;15 km
+                        <div style="float:right">
+                    <input id="km_distance_input" onfocus="if(this.value=='Zasięg w km') this.value='';" onblur="if(this.value=='') this.value='Zasięg w km';" value="Zasięg w km"/>
+                <input type="hidden" id="km_distance" name="km_distance"  value="1"/>
         </div>
-        <!-- end content -->
-    </div>
+</div>
+</div>
+</div>
+</form>
+<div id="boxes-lines">
+    <a href="javascript:void(0);" onclick="submitSearchForm('searchform')">
+        <img id="tras" alt="szukaj" height="58" src="{$site_url}images/trans.png" width="210"/></a></div>
+</div>
+<!-- end content -->
+</div>
 {include file="extension/footer_home.html"}
