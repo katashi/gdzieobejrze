@@ -7,6 +7,8 @@ class Map extends Main {
         //
         $this->load->model('main_model');
         $this->load->model('gdzieobejrze/product_model');
+        //
+        $this->load_recommended_products();
     }
 
     // display
@@ -22,6 +24,11 @@ class Map extends Main {
         $this->display('map');
     }
 
+    function load_recommended_products(){
+        $products = $this->product_model->load_all();
+        $this->ci->smarty->assign('recommended_products', $products);
+    }
+
     /*
      * Proces Wyszukiwania
      *
@@ -29,27 +36,18 @@ class Map extends Main {
      * return: all products from query
      */
     function search_post_process() {
-        if (isset($_POST['query']) && $_POST['query'] = 'Samsung LCD 43 HD') {
-            $_POST['query'] = '';
-        }
-        if (isset($_POST['localization']) && $_POST['localization'] = 'Bez lokalizacji') {
-            $_POST['localization'] = '';
-        }
-        if (isset($_POST['km_distance']) && $_POST['km_distance'] = 'Zasięg w km') {
-            $_POST['km_distance'] = '';
-        }
         $results = $this->product_model->search_query();
-        echo'<pre style="display: none">';
-        print_R($results);
-        echo'</pre>';
+//        echo'<pre style="display: none">';
+//        print_R($results);
+//        echo'</pre>';
     }
 
     function search_post_results(){
 
         $results = $this->product_model->search_query_results();
-        echo'<pre>';
-        print_R($results);
-        echo'</pre>';
+//        echo'<pre>';
+//        print_R($results);
+//        echo'</pre>';
         //tutaj poprawny rezultat bedziemy dodawac do smartow
 
     }
