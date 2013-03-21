@@ -33,7 +33,7 @@ function submitSearchForm(form){
 function displayShopsList(){
     //niewiem jak narazie ma działac wyszukiwanie itp wiec robie all partners
     var success = function(data, textStatus, jqXHR){
-        $('#wybor4').html(data);
+        $('#curiosel').html(data);
     }
     data = '';
     ajaxRequest('displayShopsList',data,success);
@@ -93,6 +93,8 @@ function formDisplayQuestion(id_shop){
 
 //Popup windows
 function displayPopupWindow(){
+    screenHeight  = $( document ).height();
+    $('#popupwindow').css('height',screenHeight);
     $('#popupwindow').css('display','block');
 }
 function closePopupWindow(){
@@ -100,6 +102,8 @@ function closePopupWindow(){
     $('#popupwindow').html('');
 }
 function displayFormWindow(){
+    screenHeight  = $( document ).height();
+    $('#popupwindow2').css('height',screenHeight);
     $('#popupwindow2').css('display','block');
 }
 function closeFormWindow(){
@@ -150,10 +154,55 @@ function searchFrom(){
     });
 }
 
+
+function MyCarousel(opt){
+    var blockMaxHeight = 0 - $('#curiosel').height();
+    var elements = 3;
+    var slideValue = 143; // px
+    var currentTop = $('#curiosel').css('top');
+
+    blockMaxHeight = blockMaxHeight + (slideValue*elements);
+    if(opt == 'next'){
+        var target = parseInt(currentTop) - parseInt(slideValue);
+
+//        alert(blockMaxHeight);
+//        alert(currentTop);
+//        alert(parseInt(target));
+        if(target > blockMaxHeight){
+            $('#curiosel').animate({
+                top: target
+            });
+        }
+    }
+    if(opt == 'prev'){
+        //prev
+        var target = parseInt(currentTop) + parseInt(slideValue);
+        if(target < 0){
+            $('#curiosel').animate({
+                top: target
+            });
+        }
+    }
+
+}
+
 $(document).ready(function(){
     searchFrom();
     //ładuje liste sklepów po lewej
     displayShopsList();
+    //
+    $('.carousel').uCarousel({show:1,buttonClass:'car-button', pageStep:1, shift:false, easing:'easeOutQuart'})
+
+//    var mcarousel = MyCarousel();
+//    //add click event
+//    $("#next").click(function(e) {
+//        e.preventDefault();
+//        MyCarousel('next');
+//    });
+//    $("#previous").click(function(e) {
+//        e.preventDefault();
+//        MyCarousel('prev');
+//    });
 });
 
 //slider right

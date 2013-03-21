@@ -25,6 +25,8 @@ class Map extends Main {
     }
 
     function load_recommended_products(){
+        $_REQUEST['start'] = 0;
+        $_REQUEST['limit'] = 6;
         $products = $this->product_model->load_all();
         $this->ci->smarty->assign('recommended_products', $products);
     }

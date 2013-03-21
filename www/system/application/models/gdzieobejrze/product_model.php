@@ -19,6 +19,7 @@ class Product_Model extends Main_Model {
         return $this->db->count_all_results();
     }
     function load_all() {
+        $this->limit_check();
         $query = $this->db->get($this->_name);
         $record = $query->result_array();
         return $record;
