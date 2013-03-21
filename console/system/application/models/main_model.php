@@ -44,19 +44,20 @@ class Main_Model extends Model {
         return $record;
     }
     function load($id , $where = 'id') {
-        //exception for partners
-        $fields = $this->load_field();
-        if(in_array('id_partner',$fields)){
-            if(isset($this->ci->session->userdata['administrator_id_partner']) != 0){
-                $this->db->where('id_partner',$this->ci->session->userdata['administrator_id_partner']);
-            }
+    //exception for partners
+    $fields = $this->load_field();
+    if(in_array('id_partner',$fields)){
+        if(isset($this->ci->session->userdata['administrator_id_partner']) != 0){
+            $this->db->where('id_partner',$this->ci->session->userdata['administrator_id_partner']);
         }
-        // end exception
-        $this->db->where($where, $id);
-        $query = $this->db->get($this->_name);
-        $record = $query->row_array();
-        return $record;
     }
+    // end exception
+    $this->db->where($where, $id);
+    $query = $this->db->get($this->_name);
+    $record = $query->row_array();
+    return $record;
+    }
+
     // crud
     function add() {
         $fields = $this->load_field();

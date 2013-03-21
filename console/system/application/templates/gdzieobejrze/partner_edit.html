@@ -29,7 +29,7 @@ function partner_edit() {
             method: 'POST',
             url: this._path+'/edit/'+this.id,
             success: function() {
-                if (partner.store) { partner.store.display.reload(); }
+                if (typeof partner != 'undefined') { partner.store.display.reload(); }
                 Ext.MessageBox.alert('Katashi', 'Operacja zakończona poprawnie');
             },
             failure: function() {

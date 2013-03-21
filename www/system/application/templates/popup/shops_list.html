@@ -1,0 +1,44 @@
+<ul>
+    {foreach from=$shops item=shop key=key name=foo}
+    <li>
+        <div id="mapa2" class="box2">
+            <div id="box-ad{if $smarty.foreach.foo.first}-special{/if}">
+                <div id="box-ad-1">
+                    <img width="57" height="57" alt="logo" src="{$media_url}image/100x75/{$shop.image}"
+                         style="float: right"><a onclick="displayShop({$shop.id});" href="javascript:void(0)">{$shop.title}
+                </a>
+                    <img width="36" height="36" alt="" class="special" src="{$site_url}/images/ads.png">
+                    <br>
+
+                    <div id="adres3">
+                        <a onclick="displayShop({$shop.id});" href="javascript:void(0)">{$shop.company_city}<br>
+                            {$shop.company_address}</a>
+                    </div>
+                </div>
+                <div id="box-ad-2">
+                    <div id="box-ad-2-l">Cena: -NA- zł</div>
+                    <div id="box-ad-2-2"> Odległość: -NA-</div>
+                </div>
+                <div id="box-ad-3">
+                    <div id="box-ad-2-4">
+                        <img width="9" height="11" alt="" src="{$site_url}/images/arrow.png"> <a
+                            onclick="displayShop({$shop.id});" href="javascript:void(0)">Więcej</a></div>
+                    <div id="box-ad-2-5">
+                        <div id="stars">
+                            <img width="13" height="13" alt="" src="{$site_url}/images/ad-tick-on.png"><img width="13"
+                                                                                                            height="13"
+                                                                                                            alt=""
+                                                                                                            src="{$site_url}images/ad-tick-on.png"><img
+                                width="13" height="13" alt="" src="{$site_url}images/ad-tick-on.png"><img width="13"
+                                                                                                          height="13"
+                                                                                                          alt=""
+                                                                                                          src="{$site_url}images/ad-tick-on.png"><img
+                                width="13" height="13" alt="" src="{$site_url}images/ad-tick.png"></div>
+                        4.12
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+    {/foreach}
+</ul>

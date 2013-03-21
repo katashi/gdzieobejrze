@@ -8,6 +8,7 @@ class Main extends Controller {
         //
         $this->db->query("SET NAMES 'utf8'");
         $this->smarty->assign('base_url', $this->config->site_url().'/');
+        $this->smarty->assign('media_url', MEDIA_URL.'/');
         $this->smarty->assign('site_url', SITE_URL.'/');
         $this->smarty->assign('app_url', APP_URL.'/');
         $this->phpVersion = substr(phpversion(),0,1);

@@ -14,7 +14,11 @@ class Main_Model extends Model {
         $this->db->from($this->_name);
         return $this->db->count_all_results();
     }
-    function load_all() {
+    function load_all($id=null , $where = 'id') {
+        if(isset($id) && !empty($id)){
+            ($where == null ? $where = 'id':'');
+            $this->db->where($where, $id);
+        }
         $query = $this->db->get($this->_name);
         $record = $query->result_array();
         return $record;
@@ -25,7 +29,6 @@ class Main_Model extends Model {
         $record = $query->row_array();
         return $record;
     }
-
     // crud
     function add() {
         $this->db->insert($this->_name, $_POST);

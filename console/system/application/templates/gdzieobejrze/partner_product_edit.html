@@ -6,7 +6,7 @@ function partner_product_edit() {
 
     // var
     this._dir = '{/literal}{$_dir}{literal}';
-    this._field = JSON.parse('{/literal}{$field}{literal}');
+    this._field = JSON.parse('{/literal}{$field}{literal}')
     this._id = '{/literal}{$_id}{literal}';
     this._name = '{/literal}{$_name}{literal}';
     this._path = base_url + '/' + this._dir + ':' + this._name;
@@ -60,44 +60,33 @@ function partner_product_edit() {
     var config = new Object({
         items:[
             {
+                disabled: true,
                 allowBlank:false,
                 fieldLabel:'Tytuł',
                 name:'title',
                 xtype:'textfield'
             },
             {
+                disabled: true,
                 allowBlank:false,
-                displayField:'title',
-                editable:false,
                 fieldLabel:'Kategoria',
-                hiddenName:'id_category',
-                name:'id_category',
-                store:category_store,
-                triggerAction:'all',
-                width:350,
-                valueField:'id',
-                xtype:'combo'
+                name:'category_title',
+                xtype:'textfield'
             },
             {
+                disabled: true,
                 allowBlank:false,
-                displayField:'title',
-                editable:false,
                 fieldLabel:'Producent',
-                hiddenName:'id_vendor',
-                name:'id_vendor',
-                store:vendor_store,
-                triggerAction:'all',
-                width:350,
-                valueField:'id',
-                xtype:'combo'
+                name:'vendor_title',
+                xtype:'textfield'
             },
             {
-                fieldLabel:'Nagłówek',
+                fieldLabel:'Model',
                 name:'text1',
                 xtype:'textfield'
             },
             {
-                fieldLabel:'Header',
+                fieldLabel:'Nagłówek',
                 name:'text2',
                 xtype:'textfield'
             },
@@ -287,6 +276,5 @@ function partner_product_edit() {
 }
 var partner_product_edit = new partner_product_edit();
 //
-{
-    /literal}</script>
+{/literal}</script>
 <div id="{$_id}"></div>

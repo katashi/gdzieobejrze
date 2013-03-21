@@ -4,13 +4,13 @@ class Product_Model extends Main_Model {
 
     function Product_Model() {
         // Call the Model constructor
+        $this->_name = 'product';
         parent::Model();
         //
         if (isset($this->ci)) {
             $this->db = $this->ci->db;
         }
         //
-        $this->table_name = 'pc_product';
     }
 
     function add() {
@@ -68,4 +68,5 @@ class Product_Model extends Main_Model {
 
         return 1;
     }
+
 }

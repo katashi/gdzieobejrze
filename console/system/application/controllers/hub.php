@@ -55,5 +55,11 @@ class Hub extends Main {
         echo 'grid';
         //echo '{"success":'.$success.'}';
     }
+    // operators
+    function active_set($id = null, $state = false) {
+        if (!isset($id)) { die; }
+        $result = $this->main_model->active_set($id, $state);
+        echo 'grid';
+    }
 
 }
