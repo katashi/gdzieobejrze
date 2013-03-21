@@ -1,6 +1,4 @@
-<ul>
-    {foreach from=$shops item=shop key=key name=foo}
-    <li>
+{foreach from=$shops item=shop key=key name=foo}
         <div id="mapa2" class="box2">
             <div id="box-ad{if $smarty.foreach.foo.first}-special{/if}">
                 <div id="box-ad-1">
@@ -39,6 +37,4 @@
                 </div>
             </div>
         </div>
-    </li>
-    {/foreach}
-</ul>
+{/foreach}

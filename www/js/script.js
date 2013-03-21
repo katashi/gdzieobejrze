@@ -31,12 +31,14 @@ function submitSearchForm(form){
 
 //left shop lists
 function displayShopsList(){
-    //niewiem jak narazie ma działac wyszukiwanie itp wiec robie all partners
+    //niewiem jak narazie ma działac wyszukiwanie itp wiec robie all partners1
+    if($('#curiosel').length>0){
     var success = function(data, textStatus, jqXHR){
         $('#curiosel').html(data);
     }
     data = '';
     ajaxRequest('displayShopsList',data,success);
+    }
 }
 
 //popup functions
@@ -155,54 +157,56 @@ function searchFrom(){
 }
 
 
+function left_slider(){
+    //add click event
+    $("#next").click(function(e) {
+        e.preventDefault();
+        $(this).each(function(){
+            MyCarousel('next');
+        });
+    });
+    $("#prev").click(function(e) {
+        e.preventDefault();
+        $(this).each(function(){
+            MyCarousel('prev');
+        });
+    });
+}
 function MyCarousel(opt){
     var blockMaxHeight = 0 - $('#curiosel').height();
-    var elements = 3;
+    var elements = 2;
     var slideValue = 143; // px
-    var currentTop = $('#curiosel').css('top');
-
+    var currentTop = parseInt($('#curiosel').css('top'));
     blockMaxHeight = blockMaxHeight + (slideValue*elements);
-    if(opt == 'next'){
-        var target = parseInt(currentTop) - parseInt(slideValue);
+//    currentTop = target}
+//    alert(currentTop+' '+slideValue);
+//    alert((currentTop % slideValue)==0);
 
-//        alert(blockMaxHeight);
-//        alert(currentTop);
-//        alert(parseInt(target));
+    if((currentTop % slideValue)==0) {
+    if(opt == 'next'){
+        var target = currentTop - parseInt(slideValue);
         if(target > blockMaxHeight){
             $('#curiosel').animate({
-                top: target
+                top: target+'px'
             });
         }
     }
     if(opt == 'prev'){
-        //prev
         var target = parseInt(currentTop) + parseInt(slideValue);
         if(target < 0){
             $('#curiosel').animate({
-                top: target
+                top: target+'px'
             });
         }
     }
-
+    }
 }
 
 $(document).ready(function(){
     searchFrom();
     //ładuje liste sklepów po lewej
     displayShopsList();
-    //
-    $('.carousel').uCarousel({show:1,buttonClass:'car-button', pageStep:1, shift:false, easing:'easeOutQuart'})
-
-//    var mcarousel = MyCarousel();
-//    //add click event
-//    $("#next").click(function(e) {
-//        e.preventDefault();
-//        MyCarousel('next');
-//    });
-//    $("#previous").click(function(e) {
-//        e.preventDefault();
-//        MyCarousel('prev');
-//    });
+    left_slider();
 });
 
 //slider right
