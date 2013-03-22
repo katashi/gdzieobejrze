@@ -1,37 +1,38 @@
+<form id="meetingshop">
+    <input id="rds" type="hidden" value="">
 <div id="narrow-window">
     &nbsp;<a href="javascript:void(0);" onclick="closeFormWindow();" title="Zamknij okno"><img width="26" height="26" src="images/close.png" alt="Zamknij okno" class="closeb"></a>
     <div id="adb-gora5">
         &nbsp;  Umów się na spotkanie:<br>
     </div>
     <div id="adb-3">
-
         <table cellspacing="0" cellpadding="0" style="width: 100%">
             <tbody><tr>
                 <td style="height: 18px">Imię:</td>
-                <td style="height: 18px"><input name="form1"></td>
+                <td style="height: 18px"><input id="name" name="name"><span id="meetingshop_name_errorloc" class="errorform"></span></td>
             </tr>
             <tr>
                 <td>Nazwisko:</td>
-                <td><input name="form2">&nbsp;</td>
+                <td><input id="surname" name="surname"><span id="meetingshop_surname_errorloc" class="errorform"></span></span></td>
             </tr>
             <tr>
                 <td>E-mail:</td>
-                <td><input name="form3">&nbsp;</td>
+                <td><input id="email" name="email"><span id="meetingshop_email_errorloc" class="errorform"></span></td>
             </tr>
             <tr>
                 <td>Telefon:</td>
-                <td><input name="form4">&nbsp;</td>
+                <td><input id="phone" name="phone"><span id="meetingshop_phone_errorloc" class="errorform"></span></td>
             </tr>
             <tr>
                 <td>Data:</td>
-                <td><input name="form13"> <a href="#">
-                    <img width="25" height="27" src="images/calendar.png" alt="" class="middle"></a></td>
+                <td><input id="data" name="data"> <a href="#">
+                    <img width="25" height="27" src="images/calendar.png" alt="" class="middle"></a><span id="meetingshop_data_errorloc" class="errorform"></span></td>
             </tr>
             <tr>
                 <td>Godzina:</td>
-                <td><input value="10:00" style="width: 32px" name="form11">&nbsp;<img width="13" id="godzina2" usemap="#godzina2" src="images/arrows.png" alt="">
-
+                <td><input name="time" value="10:00" style="width: 32px" name="time">&nbsp;<img width="13" id="godzina2" usemap="#godzina2" src="images/arrows.png" alt="">
                     <map name="godzina2" id="godzina2"><area target="_self" href="#up" coords="0,0,12,13" title="" alt="" shape="rect"><area target="" href="#down" coords="0,14,12,26" title="" alt="" shape="rect"></map>
+                    <span id="meetingshop_godzina2_errorloc" class="errorform"></span>
                 </td>
             </tr>
             </tbody></table>
@@ -41,7 +42,8 @@
             <tbody><tr>
                 <td valign="top" style="height: 18px; width: 109px;">Uwagi:</td>
                 <td style="height: 18px">
-                    <textarea name="message" class="wiad"></textarea></td>
+                    <span id="meetingshop_message_errorloc" class="errorform"></span>
+                    <textarea id="message" name="message" class="wiad"></textarea></td>
             </tr>
             </tbody></table>
     </div>
@@ -50,3 +52,28 @@
             Umów się na spotkanie</div>
     </a>
     &nbsp;</div>
+</form>
+        <script>
+            {literal}
+            //formn
+            $(document).ready(function(){
+                var frmvalidator = new Validator("meetingshop");
+                frmvalidator.addValidation("name","req",'Wymagane');
+                frmvalidator.addValidation("surname","req",'Wymagane');
+                frmvalidator.EnableOnPageErrorDisplay();
+                frmvalidator.EnableMsgsTogether();
+
+                $('.button').click(function(e){
+                    e.preventDefault();
+                    //first for validation
+                    if(frmvalidator.formobj.onsubmit()==true){
+                        alert('I poszedł poprawny form submitujemy');
+                    }
+                });
+                var ok = false;
+                if(ok==true){
+                $("#form_meeting_shop").ajaxSubmit({url: 'server.php', type: 'post'})
+                }
+            });
+            {/literal}
+        </script>

@@ -29,7 +29,8 @@ function West_Article() {
 		var config = new Object({
             controller: '_warehouse:',
 			dataUrl: base_url+'/_core:tree/tree_create/article',
-			ddGroup: 'article',
+            ddGroup: 'warehouse_article',
+            ddGroupExtended: 'structure_website',
             //ddGroupExtended: 'website',
 			id: 'article'
 		});

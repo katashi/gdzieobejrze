@@ -1,4 +1,5 @@
 
+
 function tootgleSlider(){
     if($("#sp1").css('right') == '0px'){
         $('#sp1').animate({right:-367},1000);
@@ -40,6 +41,7 @@ function displayShopsList(){
     ajaxRequest('displayShopsList',data,success);
     }
 }
+
 
 //popup functions
 function displayProduct(id_product){

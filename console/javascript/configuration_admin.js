@@ -29,6 +29,8 @@ var _west = true;
 //
 var _west_media = true;
 var _west_image = true;
+var _west_structure = true;
+var _west_structure_website = true;
 var _west_warehouse = true;
 var _west_article = true;
 var _west_product = true;

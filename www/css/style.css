@@ -1149,4 +1149,8 @@ overflow:hidden; display:block; width:300px; margin:0 0 15px 21px;
     width: 100%;
     z-index: 201;
 }
+.errorform{
+    color:red;
+    font-size: 12px;
+}
 

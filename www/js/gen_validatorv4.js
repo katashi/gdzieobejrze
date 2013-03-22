@@ -17,6 +17,7 @@
 
 function Validator(frmname)
 {
+    this.errorWD = false;
     this.validate_on_killfocus = false;
     this.formobj = document.forms[frmname];
     if (!this.formobj)
@@ -62,6 +63,7 @@ function Validator(frmname)
 
     this.formobj.DisableValidations = sfm_disable_validations;
     this.formobj.validatorobj = this;
+
 }
 
 
