@@ -43,8 +43,8 @@
 $route['default_controller'] = "main";
 $route['scaffolding_trigger'] = "";
 
-$route['mapa'] = "index.php/main/run/map/display/$1";
-$route['page/(:any)'] = "main/run/article/display_single/$1";
+$route['mapa'] = "main/run/map";
+$route['mapa/(:any)'] = "main/run/map/$1";
 
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */

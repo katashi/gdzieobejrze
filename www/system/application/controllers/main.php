@@ -21,13 +21,13 @@ class Main extends Controller {
 
 	// index
 	function index() {
-        header('location: index.php/main/run/home');
+        header('location: index.php/home');
 	}
 
 	// run
 	function run() {
 		// we need to segment uri to gain some control
-		$this->uri2 = array_slice($this->uri->segment_array(), 2);
+		$this->uri2 = array_slice($this->uri->rsegment_array(), 2);
 		if (isset($this->uri2[0])) { $command_sequence = $this->uri2[0]; } else { $command_sequence = ''; }
         // ok, because we need to put controllers in different directories to get general control
         // we put : between DIR:MODULE(controller)
