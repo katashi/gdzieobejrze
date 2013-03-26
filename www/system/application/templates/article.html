@@ -1,1 +1,33 @@
-here
+{include file="extension/header_home.html"}
+<div class="wrapper">
+    <!-- header -->
+    <div id="header">
+        <div id="max-width">
+            <!-- top menu -->
+            <ul style="padding-right:8px;" class="sf-menu">
+                {include file="extension/map_menu_top.html"}
+            </ul>
+            <!-- end top menu-->
+        </div>
+        <div id="line"></div>
+        <!-- end header -->
+        <!-- content -->
+        <div id="content">
+        <div id="okno" style="margin-bottom: 100px;">
+            <div style="padding-top: 20px">
+                <div id="adb-tytul" style="text-align: left;margin-left: 20px">
+                    {$article.title}<br>
+                </div>
+                <div id="adb-tytul2"style="text-align: left;margin-left: 20px">
+                    {$article.header}<br>
+                </div>
+                <div id="adb-opis2">
+                    {$article.text}
+                </div>
+            </div>
+
+        </div>
+        </div>
+        <!-- end content -->
+    </div>
+    {include file="extension/footer_home.html"}

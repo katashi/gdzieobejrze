@@ -48,7 +48,7 @@ class Article extends Main{
         return $result;
     }
     function load($id = null) {
-        $url = CONSOLE_URL.'/_structure:structure_website/load/warehouse_article,'.$id;
+        $url = CONSOLE_URL.'/_structure:structure_website/load/article,'.$id;
         $result = $this->api_call($url);
         if ($result['success'] == 1) {
             return $result;

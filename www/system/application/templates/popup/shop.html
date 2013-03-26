@@ -62,15 +62,16 @@
             <a href="javascript:void(0);" onclick="formDisplayQuestion({$shop.id})" class="button3">
                 Wyślij zapytanie
             </a>
-            <a href="{$shop.url}" target="_blank" class="button3">
+            {if $shop.url1}
+            <a href="{$shop.url1}" target="_blank" class="button3">
                 Sklep internetowy
             </a>
+            {/if}
             <a href="javascript:void(0);" onclick="formDisplayComment({$shop.id})" class="button3">
                 Dodaj swoją opinię
             </a>
         </div>
         <div id="info-22">
-
             <!-- jeden komentarz -->
             <div id="comment">
                 <div id="comment-1">
@@ -85,7 +86,6 @@
                 <div id="comment-4">4.0</div>
             </div>
             <!-- end jeden komentarz -->
-
         </div>
         <div id="info-26">
             <a href="#">

@@ -3,6 +3,7 @@
 class Partner_Model extends Main_Model {
 
     function Partner_Model() {
+        $this->table_name = 'pc_partner';
         // Call the Model constructor
         parent::Model();
         //
@@ -10,6 +11,6 @@ class Partner_Model extends Main_Model {
             $this->db = $this->ci->db;
         }
         //
-        $this->table_name = 'pc_partner';
+
     }
 }

@@ -2,11 +2,13 @@
     <input id="rds" type="hidden" value="">
 <div id="narrow-window">
     &nbsp;<a href="javascript:void(0);" onclick="closeFormWindow();" title="Zamknij okno"><img width="26" height="26" src="images/close.png" alt="Zamknij okno" class="closeb"></a>
+    <div id="forminfo"></div>
     <div id="adb-gora5">
         &nbsp;  Umów się na spotkanie:<br>
     </div>
     <div id="adb-3">
         <table cellspacing="0" cellpadding="0" style="width: 100%">
+            <input type="hidden" name="id_shop" value="{$id_shop}">
             <tbody><tr>
                 <td style="height: 18px">Imię:</td>
                 <td style="height: 18px"><input id="name" name="name"><span id="meetingshop_name_errorloc" class="errorform"></span></td>
@@ -32,7 +34,7 @@
                 <td>Godzina:</td>
                 <td><input name="time" value="10:00" style="width: 32px" name="time">&nbsp;<img width="13" id="godzina2" usemap="#godzina2" src="images/arrows.png" alt="">
                     <map name="godzina2" id="godzina2"><area target="_self" href="#up" coords="0,0,12,13" title="" alt="" shape="rect"><area target="" href="#down" coords="0,14,12,26" title="" alt="" shape="rect"></map>
-                    <span id="meetingshop_godzina2_errorloc" class="errorform"></span>
+                    <span id="meetingshop_time_errorloc" class="errorform"></span>
                 </td>
             </tr>
             </tbody></table>
@@ -60,6 +62,8 @@
                 var frmvalidator = new Validator("meetingshop");
                 frmvalidator.addValidation("name","req",'Wymagane');
                 frmvalidator.addValidation("surname","req",'Wymagane');
+                frmvalidator.addValidation("email","req",'Wymagane');
+
                 frmvalidator.EnableOnPageErrorDisplay();
                 frmvalidator.EnableMsgsTogether();
 
@@ -67,13 +71,9 @@
                     e.preventDefault();
                     //first for validation
                     if(frmvalidator.formobj.onsubmit()==true){
-                        alert('I poszedł poprawny form submitujemy');
+                        send_meeting_email();
                     }
                 });
-                var ok = false;
-                if(ok==true){
-                $("#form_meeting_shop").ajaxSubmit({url: 'server.php', type: 'post'})
-                }
             });
             {/literal}
         </script>

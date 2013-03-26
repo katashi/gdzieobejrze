@@ -1,5 +1,7 @@
+<form id="questionshop">
 <div id="narrow-window2">
     &nbsp;<a href="javascript:void(0);" onclick="closeFormWindow();" title="Zamknij okno"><img width="26" height="26" src="images/close.png" alt="Zamknij okno" class="closeb"></a>
+    <div id="forminfo"></div>
     <div id="adb-gora5">
         &nbsp; Wyślij zapytanie:<br>
     </div>
@@ -7,28 +9,24 @@
         <table cellspacing="0" cellpadding="0" style="width: 100%">
             <tbody><tr>
                 <td style="height: 18px; width: 77px;">Imię:</td>
-                <td style="height: 18px"><input name="form1"></td>
+                <td style="height: 18px"><input name="name"><span id="questionshop_name_errorloc" class="errorform"></span></td>
             </tr>
             <tr>
                 <td style="width: 77px">Nazwisko:</td>
-                <td><input name="form2">&nbsp;</td>
+                <td><input name="surname"><span id="questionshop_surname_errorloc" class="errorform"></span></td>
             </tr>
             <tr>
                 <td style="width: 77px">E-mail:</td>
-                <td><input name="form3">&nbsp;</td>
+                <td><input name="email"><span id="questionshop_email_errorloc" class="errorform"></span></td>
             </tr>
             </tbody></table>
     </div>
     <div id="adb-4">
         <table cellspacing="0" cellpadding="0" style="width: 323px">
-            <tbody><tr>
-                <td valign="top" style="height: 18px; width: 103px;">Ocena:&nbsp;</td>
-                <td style="height: 18px">
-                    <img width="21" height="21" src="images/tick-1.png" alt=""><img width="21" height="21" src="images/tick-2.png" alt=""><img width="21" height="21" src="images/tick-2.png" alt=""><img width="21" height="21" src="images/tick-2.png" alt=""><img width="21" height="21" src="images/tick-2.png" alt="">&nbsp;</td>
-            </tr>
+            <tbody>
             <tr>
                 <td valign="top" style="height: 18px; width: 103px;"><br>
-                    Uwagi:</td>
+                    Wiadomość:</td>
                 <td style="height: 18px">
                     <textarea name="message" style="height: 96px; width: 230px;"></textarea></td>
             </tr>
@@ -39,3 +37,26 @@
             Wyślij wiadomość</div>
     </a>
     &nbsp;</div>
+</form>
+<script>
+    {literal}
+    //form
+    $(document).ready(function(){
+        var frmvalidator = new Validator("questionshop");
+        frmvalidator.addValidation("name","req",'Wymagane');
+        frmvalidator.addValidation("surname","req",'Wymagane');
+        frmvalidator.addValidation("email","req",'Wymagane');
+
+        frmvalidator.EnableOnPageErrorDisplay();
+        frmvalidator.EnableMsgsTogether();
+
+        $('.button').click(function(e){
+            e.preventDefault();
+            //first for validation
+            if(frmvalidator.formobj.onsubmit()==true){
+                send_question_email();
+            }
+        });
+    });
+    {/literal}
+</script>

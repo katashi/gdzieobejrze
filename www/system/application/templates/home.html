@@ -4,16 +4,13 @@
     <!-- header -->
     <div id="header">
         <div id="max-width">
-            <ul class="sf-menu">
-                <li><a href="#">O nas</a></li>
-                <li><a href="#">Dodaj sklep</a></li>
-                <li><a href="#">Współpraca</a></li>
-                <li><a href="#">Regulamin</a></li>
-                <li><a href="#">Pomoc</a></li>
-                <li><a href="#">Forum</a></li>
-                <li><a href="#">Kontakt</a></li>
-                <li><a class="log" href="#"><span style="color:black;">Logowanie</span></a></li>
-            </ul>
+            <!-- top menu -->
+
+                <ul style="padding-right:8px;" class="sf-menu">
+                {include file="extension/map_menu_top.html"}
+                </ul>
+
+            <!-- end top menu-->
         </div>
         <div id="line"></div>
         <!-- end header -->
@@ -24,7 +21,7 @@
             <br/>
             <div id="slogan" style="height:40px"><p style="display:none"> Contrary to popular belief, Lorem Ipsum.</p>
             </div>
-            <form id="searchform" method="post" action="{$site_url}index.php/main/run/map">
+            <form id="searchform" method="post" action="{$site_url}index.php/mapa">
             <div id="boxes">
                 <div id="box1" style="">Znajdź przedmiot<br/>
                     <input id="query" name="query" onfocus="if(this.value=='Samsung LCD 43 HD') this.value='';" onblur="if(this.value=='') this.value='Samsung LCD 43 HD';" value="Samsung LCD 43 HD"/><a href="#" class="button">Wybierz z kategorii </a>

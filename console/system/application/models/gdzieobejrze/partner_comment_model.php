@@ -3,6 +3,7 @@
 class Partner_Comment_Model extends Main_Model {
 
     function Partner_Comment_Model() {
+        $this->table_name = 'pc_partner_comment';
         // Call the Model constructor
         parent::Model();
         //
@@ -10,6 +11,5 @@ class Partner_Comment_Model extends Main_Model {
             $this->db = $this->ci->db;
         }
         //
-        $this->table_name = 'pc_partner_comment';
     }
 }
