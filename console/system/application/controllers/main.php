@@ -59,7 +59,7 @@ class Main extends Controller {
 	// run
 	function run() {
 		// we need to segment uri to gain some control
-		$this->uri = array_slice($this->uri->segment_array(), 2);		
+		$this->uri = array_slice($this->uri->segment_array(), 2);
 		if (isset($this->uri[0])) { $command_sequence = $this->uri[0]; } else { $command_sequence = ''; }
         // ok, because we need to put controllers in different directories to get general control
         // we put : between DIR:MODULE(controller)

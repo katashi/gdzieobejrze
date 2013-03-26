@@ -6,10 +6,12 @@
 */
 
 // site url for an application (access for back office console )
-define('CONSOLE_URL', 'http://'.$_SERVER['SERVER_NAME'].'/www_gdzieobejrze_pl/console');
+define('CONSOLE_URL', 'http://'.$_SERVER['SERVER_NAME'].'/www_gdzieobejrze_pl/console/index.php/main/run');
 define('SITE_URL', 'http://'.$_SERVER['SERVER_NAME'].'/www_gdzieobejrze_pl/www');
 define('MEDIA_URL', 'http://'.$_SERVER['SERVER_NAME'].'/www_gdzieobejrze_pl/media');
 
+//configuration
+define('CONFIGURATION', 'katashi');
 // config api
 define('API_DEBUG', 0);
 define('API_DATAFORMAT', 'OBJECT'); // OBJECT, JSON

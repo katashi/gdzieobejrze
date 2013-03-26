@@ -1,4 +1,19 @@
-
+$.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+        $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
 
 function tootgleSlider(){
     if($("#sp1").css('right') == '0px'){
@@ -115,11 +130,80 @@ function closeFormWindow(){
     $('#popupwindow2').html('');
 }
 
+function send_meeting_email(){
+    var success = function(data, textStatus, jqXHR){
+        if(data.success){
+            $('#forminfo').html(data.message);
+            $('#forminfo').css('display','block');
+            clearFormElements('#meetingshop');
+            $('#meetingshop input[name=time]').val('10:00');
+        }else{
+            alert('Wystąpił błąd.Przepraszamy');
+            closeFormWindow();
+            closePopupWindow();
+        }
+    }
+    data = $("#meetingshop").serializeObject();//JSON.stringify()
+    ajaxRequestJson('sendMeetingEmail',data,success);
+}
+function send_question_email(){
+    var success = function(data, textStatus, jqXHR){
+        if(data.success){
+            $('#forminfo').html(data.message);
+            $('#forminfo').css('display','block');
+            //clear form
+            clearFormElements('#questionshop');
+        }else{
+            alert('Wystąpił błąd.Przepraszamy');
+            closeFormWindow();
+            closePopupWindow();
+        }
+    }
+    data = $("#questionshop").serializeObject();//JSON.stringify()
+    ajaxRequestJson('sendQuestionEmail',data,success);
+}
+function send_comment_email(){
+    var success = function(data, textStatus, jqXHR){
+        if(data.success){
+            $('#forminfo').html(data.message);
+            $('#forminfo').css('display','block');
+            clearFormElements('#commentshop');
+        }else{
+            alert('Wystąpił błąd.Przepraszamy');
+            closeFormWindow();
+            closePopupWindow();
+        }
+    }
+    data = $("#commentshop").serializeObject();//JSON.stringify()
+    ajaxRequestJson('sendCommentEmail',data,success);
+}
+
 function ajaxRequest(method,data,success){
-    url = 'http://www.knsdes.nazwa.pl/www_gdzieobejrze_pl/www/index.php/main/run/jsroute';
+    url = 'http://www.knsdes.nazwa.pl/www_gdzieobejrze_pl/www/index.php/jsroute';
     $.ajax({
         //dataType: "json",
         dataType: "html",
+        url: url,
+        type: "POST",
+        data: "method="+method+"&data="+JSON.stringify(data),
+        success: function(data, textStatus, jqXHR){
+            if(textStatus == 'success'){
+                if(data == ''){closePopupWindow()}else{success(data, textStatus, jqXHR);}
+            }else{
+                closePopupWindow();
+                alert('Wystąpił nieoczekiwany błąd.')
+            }
+        },
+        failure: function(){
+            alert('Wystąpił problem z połączeniem...');
+        }
+    });
+}
+function ajaxRequestJson(method,data,success){
+    url = 'http://www.knsdes.nazwa.pl/www_gdzieobejrze_pl/www/index.php/jsroute';
+    $.ajax({
+        dataType: "json",
+        //dataType: "html",
         url: url,
         type: "POST",
         data: "method="+method+"&data="+JSON.stringify(data),
@@ -202,6 +286,24 @@ function MyCarousel(opt){
         }
     }
     }
+}
+function clearFormElements(ele) {
+
+    $(ele).find(':input').each(function() {
+        switch(this.type) {
+            case 'password':
+            case 'select-multiple':
+            case 'select-one':
+            case 'text':
+            case 'textarea':
+                $(this).val('');
+                break;
+            case 'checkbox':
+            case 'radio':
+                this.checked = false;
+        }
+    });
+
 }
 
 $(document).ready(function(){

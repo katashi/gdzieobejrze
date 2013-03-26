@@ -8,6 +8,7 @@ class Structure_Website extends Main {
         //
         $this->ci = $_ci;
         //
+        $this->load->model('main_model');
         $this->ci->load->model('_structure/structure_website_model');
     }
 
@@ -57,6 +58,7 @@ class Structure_Website extends Main {
     }
     function load($tree = null, $id = null) {
         $required_model = $tree.'_model';
+        $this->load->model('main_model');
         $this->ci->load->model('_warehouse/'.$required_model);
         echo '{"success": true, "data":'.json_encode($this->$required_model->load($id)).'}';
     }

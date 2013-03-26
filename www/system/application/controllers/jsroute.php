@@ -76,5 +76,54 @@ class JsRoute extends Main {
         $this->smarty_display($template);
     }
 
+    function sendMeetingEmail(){
+        $data = json_decode($_POST['data']);
+        $data->from = $data->email;
+        $this->sendEmail($data);
+        $message = 'Wiadomość została wysłana.';
+        echo '{"success":"true","message":'.json_encode($message).'}';
+    }
+
+    function CommentShop(){
+        $data = json_decode($_POST['data']);
+        //wysyłanie komentarzy o sklepiel
+        echo '{"success":"true"}';
+    }
+
+    function sendQuestionEmail(){
+        $data = json_decode($_POST['data']);
+        $data->from = $data->email;
+        $this->sendEmail($data);
+        $message = 'Wiadomość została wysłana.';
+        echo '{"success":"true","message":'.json_encode($message).'}';
+    }
+
+
+    public function sendEmail($data,$template='default') {
+        // lets define data
+        $this->ci->smarty->assign('path_template', SITE_URL . '/templates/email/' . CONFIGURATION);
+        $this->ci->smarty->assign('path_media', SITE_URL . '/templates/email/' . CONFIGURATION);
+        $this->ci->smarty->assign('path_site', SITE_URL);
+        if(!isset($data->to)){
+            $data->to = 'robert.osiadacz@tworzeniestron.pl';
+        }
+
+        foreach($data as $key => $val){
+            //add to smarty all data
+            $this->ci->smarty->assign($key, $val);
+        }
+        $message = $this->ci->smarty->fetch('../../../../templates/email/' . CONFIGURATION . '/'.$template.'.html');
+        //
+        $config['protocol'] = 'sendmail';
+        $config['mailtype'] = 'html';
+        $config['charset'] = 'utf-8';
+        //
+        $this->ci->email->initialize($config);
+        $this->ci->email->subject('Email GO info');
+        $this->ci->email->from($data->from);
+        $this->ci->email->to($data->to);
+        $this->ci->email->message($message);
+        $this->ci->email->send();
+    }
 
 }

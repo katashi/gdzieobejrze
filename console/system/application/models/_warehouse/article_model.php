@@ -2,8 +2,10 @@
 class Article_Model extends Main_Model {
 		
 	function Article_Model() {
+        $this->_name = 'article';
         parent::Model();
         if (isset($this->ci)) { $this->db = $this->ci->db; }
+
     }
 
 	// load
