@@ -1,25 +1,28 @@
-<form id="commentshop">
+<form id="commentshop">p
+    <input type="hidden" name="id_shop" value="{$id_shop}">
+    <input id="opinion_value" type="hidden" name="opinion" value="1">
     <div id="narrow-window2">
         &nbsp;<a href="javascript:void(0);" onclick="closeFormWindow();" title="Zamknij okno"><img width="26" height="26" src="images/close.png" alt="Zamknij okno" class="closeb"></a>
         <div id="forminfo"></div>
         <div id="adb-gora5">
-            &nbsp; Wyślij zapytanie:<br>
+            &nbsp; Wyślij opinię:<br>
         </div>
         <div id="adb-3">
             <table cellspacing="0" cellpadding="0" style="width: 100%">
                 <tbody><tr>
                     <td style="height: 18px; width: 77px;">Imię:</td>
-                    <td style="height: 18px"><input name="name"><span id="questionshop_name_errorloc" class="errorform"></span></td>
+                    <td style="height: 18px"><input name="name"><span id="commentshop_name_errorloc" class="errorform"></span></td>
                 </tr>
                 <tr>
                     <td style="width: 77px">Nazwisko:</td>
-                    <td><input name="surname"><span id="questionshop_surname_errorloc" class="errorform"></span></td>
+                    <td><input name="surname"><span id="commentshop_surname_errorloc" class="errorform"></span></td>
                 </tr>
                 <tr>
                     <td style="width: 77px">E-mail:</td>
-                    <td><input name="email"><span id="questionshop_email_errorloc" class="errorform"></span></td>
+                    <td><input name="email"><span id="commentshop_email_errorloc" class="errorform"></span></td>
                 </tr>
-                </tbody></table>
+                </tbody>
+            </table>
         </div>
         <div id="adb-4">
             <table cellspacing="0" cellpadding="0" style="width: 323px">
@@ -39,7 +42,7 @@
         </div>
         <a style="float:right; margin-right:45px;" href="#" class="button">
             <div class="auto-style4">
-                Wyślij wiadomość</div>
+                Wyślij opinię</div>
         </a>
         &nbsp;</div>
 </form>

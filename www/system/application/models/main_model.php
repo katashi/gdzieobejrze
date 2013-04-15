@@ -31,6 +31,13 @@ class Main_Model extends Model {
     }
     // crud
     function add() {
+        $fields = $this->load_field();
+        if(in_array('date_added',$fields)){
+            $_POST['date_added'] = date("Y-m-d H:i:s");
+        }
+        if(in_array('date_created',$fields)){
+            $_POST['date_created'] = date("Y-m-d H:i:s");
+        }
         $this->db->insert($this->_name, $_POST);
         return 1;
     }

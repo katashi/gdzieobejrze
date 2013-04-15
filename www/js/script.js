@@ -39,7 +39,12 @@ function submitSearchForm(form){
         $('input[type=radio]').each(function(){
             $(this).attr('disabled', true);
         });
-        $('#'+form).submit();
+        if($('#'+form).find('#query').val() == ''){
+            alert('Podaj Szukany Produkt.');
+        }else{
+            $('#'+form).submit();
+        }
+
     }else{
         alert('Wprowadź zasięg. Bląd: Niepoprawna wartość pola.');
     }
@@ -175,7 +180,7 @@ function send_comment_email(){
         }
     }
     data = $("#commentshop").serializeObject();//JSON.stringify()
-    ajaxRequestJson('sendCommentEmail',data,success);
+    ajaxRequestJson('CommentShop',data,success);
 }
 
 function ajaxRequest(method,data,success){
@@ -241,7 +246,6 @@ function searchFrom(){
         }
     });
 }
-
 
 function left_slider(){
     //add click event
@@ -311,6 +315,8 @@ $(document).ready(function(){
     //ładuje liste sklepów po lewej
     displayShopsList();
     left_slider();
+    //funcja do wyswietlania braku rezultatów
+    //displayNoResults();
 });
 
 //slider right

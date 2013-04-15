@@ -72,29 +72,55 @@
             </a>
         </div>
         <div id="info-22">
+            {foreach from=$shop_comments item=comment}
             <!-- jeden komentarz -->
             <div id="comment">
                 <div id="comment-1">
-                    22.10.2013<br>
-                    <strong>małgosia</strong></div>
+                    {$comment.date_added}<br>
+                    <strong>{$comment.nick}</strong></div>
                 <div id="comment-2">
                     <img width="18" height="16" src="images/cytat.png" alt=""></div>
                 <div id="comment-3">
-                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has
-                    roots in a piece of classical Latin literature from 45 BC, making it over
-                    2000 years old. Richard McClintocal Latin literature from 45 B</div>
-                <div id="comment-4">4.0</div>
+                    {$comment.text1}</div>
+                <div id="comment-4">{$comment.rate}.0</div>
             </div>
+            {/foreach}
             <!-- end jeden komentarz -->
+
         </div>
-        <div id="info-26">
-            <a href="#">
-                <img width="7" height="57" src="images/scroll-vertical.png" alt=""></a></div>
-
-        <div id="info-27">
-            <a href="#">
-                <img width="25" height="21" src="images/go2category.png" alt="Idź do kategorii"></a></div>
-
-    </div>
-
+        <!--<div id="info-26">-->
+        <!--</div>-->
+        <!--<div id="info-27">-->
+            <!--<a href="#">-->
+                <!--<img width="25" height="21" src="images/go2category.png" alt="Idź do kategorii"></a></div>-->
+    <!--</div>-->
 </div>
+        <style>
+            {literal}
+            .mCSB_dragger_bar{
+                position: relative;
+                background: url("images/scroll-vertical.png") no-repeat scroll 0px 0px transparent!important;
+                line-height: 89px; width: 7px!important;
+            }
+            .mCSB_dragger{
+                height:57px!important;
+            }
+            .mCSB_draggerContainer{
+              height:153px!important;
+            }
+            .mCSB_scrollTools .mCSB_draggerRail{
+                background: none;
+            }
+            {/literal}
+        </style>
+        <script>
+            {literal}
+            $(document).ready(function(){
+                $("#info-22").mCustomScrollbar({
+                    advanced:{
+                        updateOnContentResize: true
+                    }
+                });
+            });
+            {/literal}
+        </script>

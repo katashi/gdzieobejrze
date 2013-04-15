@@ -59,20 +59,127 @@
     </div>
 {/foreach}
     <!-- end ad -->
-
+    <!-- ad -->
+    {foreach from=$product_shops item=shop}
+    <div id="wybor2">
+        <div id="adsyb">
+            <div id="box-ad-border">
+                <div class="auto-style2" id="box-ad-1">
+                    <img width="57" height="57" style="float: right" src="{$media_url}image/100x75/default.jpg" alt="logo"><a
+                        href="#">{$shop.title}</a>
+                    <br>
+                    <div id="ad-address">
+                        <a href="#">{$shop.company_city}<br>
+                            {$shop.company_address}</a></div>
+                </div>
+                <div class="auto-style2" id="box-ad-2">
+                    <div id="box-ad-2-l">Cena: {$shop.price} zł</div>
+                    <div id="box-ad-2-2"> Odległość: do wyliczenia</div>
+                </div>
+                <div class="auto-style2" id="box-ad-3">
+                    <div id="box-ad-2-4">
+                        <img width="9" height="11" src="images/arrow.png" alt=""> <a href="#">Więcej</a></div>
+                    <div id="box-ad-2-2">
+                        <div id="stars">
+                            <img width="13" height="13" src="images/ad-tick-on.png" alt=""><img width="13" height="13"
+                                                                                                src="images/ad-tick-on.png"
+                                                                                                alt=""><img width="13"
+                                                                                                            height="13"
+                                                                                                            src="images/ad-tick-on.png"
+                                                                                                            alt=""><img
+                                width="13" height="13" src="images/ad-tick-on.png" alt=""><img width="13" height="13"
+                                                                                               src="images/ad-tick.png"
+                                                                                               alt=""></div>
+                        4.12
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {/foreach}
+    <!-- end ad -->
+    <!-- ad -->
+    {foreach from=$product_shops item=shop}
+    <div id="wybor2">
+        <div id="adsyb">
+            <div id="box-ad-border">
+                <div class="auto-style2" id="box-ad-1">
+                    <img width="57" height="57" style="float: right" src="{$media_url}image/100x75/default.jpg" alt="logo"><a
+                        href="#">{$shop.title}</a>
+                    <br>
+                    <div id="ad-address">
+                        <a href="#">{$shop.company_city}<br>
+                            {$shop.company_address}</a></div>
+                </div>
+                <div class="auto-style2" id="box-ad-2">
+                    <div id="box-ad-2-l">Cena: {$shop.price} zł</div>
+                    <div id="box-ad-2-2"> Odległość: do wyliczenia</div>
+                </div>
+                <div class="auto-style2" id="box-ad-3">
+                    <div id="box-ad-2-4">
+                        <img width="9" height="11" src="images/arrow.png" alt=""> <a href="#">Więcej</a></div>
+                    <div id="box-ad-2-2">
+                        <div id="stars">
+                            <img width="13" height="13" src="images/ad-tick-on.png" alt=""><img width="13" height="13"
+                                                                                                src="images/ad-tick-on.png"
+                                                                                                alt=""><img width="13"
+                                                                                                            height="13"
+                                                                                                            src="images/ad-tick-on.png"
+                                                                                                            alt=""><img
+                                width="13" height="13" src="images/ad-tick-on.png" alt=""><img width="13" height="13"
+                                                                                               src="images/ad-tick.png"
+                                                                                               alt=""></div>
+                        4.12
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {/foreach}
+    <!-- end ad -->
 </div>
-<div class="auto-style1" id="ads-scroll">
-    <a href="#">
-        <img width="974" height="9" src="images/scroll.png" alt=""><img width="17" height="13"
-                                                                        src="images/adsb-icon.png"
-                                                                        style="padding:0 8px 0 8px;" alt=""></a></div>
-
-
+<!--<div class="auto-style1" id="ads-scroll">-->
+    <!--<a href="#">-->
+        <!--<img width="974" height="9" src="images/scroll.png" alt="">-->
+        <!--<img width="17" height="13" src="images/adsb-icon.png" style="padding:0 8px 0 8px;" alt="">-->
+    <!--</a>-->
+    <!--</div>-->
 </div>
+<style>
+{literal}
+.mCSB_draggerContainer{
+    background: url("images/scroll-bckg.png") no-repeat  0 0 transparent;
+    width: 974px!important;
+    margin-left: auto;
+    margin-right: auto;
+}
+.mCSB_dragger_bar{
+    position: relative;
+    background: url("images/scroll-poziom.png") no-repeat scroll 0px 0px transparent!important;
+    line-height: 89px;
+}
+.mCSB_horizontal > .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+    height: 8px;
+    margin: 0 auto;
+}
+.mCSB_horizontal > .mCSB_scrollTools .mCSB_dragger{
+    width: 57px!important;
+}
+.mCSB_draggerRail {
+    display: none!important;
+}
+{/literal}
+</style>
 <script>
     {literal}
-    $(document).ready(function () {
-        //displayShop();
+    $(document).ready(function(){
+        $("#adsb-backgr").mCustomScrollbar({
+            horizontalScroll: true,
+            advanced:{
+                autoExpandHorizontalScroll:true,
+                updateOnContentResize: true
+            }
+        });
     });
     {/literal}
 </script>

@@ -26,12 +26,10 @@
         var obj;
         var map;
         var markers;
-        var navMode;
+        var navMode = 'fixed';
         var travelMode = google.maps.DirectionsTravelMode.DRIVING;
-        var liveOriginLat;
-        var liveOriginLng;
-        var fixedOriginLat;
-        var fixedOriginLng;
+        var userOriginLat = 52.22772220173582;
+        var userOriginLng = 21.000972390174866;
         var directionsService = new google.maps.DirectionsService();
         var directionsRenderer = new google.maps.DirectionsRenderer();
 
@@ -52,18 +50,55 @@
         function init(data) {
             markers = data;
             initMap();
-            initMarkers();
-            initRoute();
+            initGeoLocation();
+
+            //initMarkers();
+            //initRoute();
         }
+
         function initMap() {
+            var styles = [ { "featureType": "poi", "stylers": [ { "visibility": "off" } ] } ];
             var mapOptions = {
-                center: new google.maps.LatLng(52.22772220173582,21.000972390174866),
+                center: new google.maps.LatLng(userOriginLat, userOriginLng),
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
-                zoom: 14
+                styles: styles,
+                zoom: 12
             }
             map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
         }
-        function initMarkers() {
+        function initGeoLocation() {
+            if (navigator.geolocation) {
+                var ng = navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        userPositionLat = position.coords.latitude;
+                        userPositionLng = position.coords.longitude;
+                        navMode = 'live';
+                        alert(navMode);
+                    },
+                    function(error) {
+                        switch(error.code) {
+                            case error.TIMEOUT:
+                                alert ('Timeout');
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                alert ('Position unavailable');
+                                break;
+                            case error.PERMISSION_DENIED:
+                                alert ('Permission denied');
+                                break;
+                            case error.UNKNOWN_ERROR:
+                                alert ('Unknown error');
+                                break;
+                        }
+                    }
+                );
+            }
+        }
+
+
+
+
+        /*function initMarkers() {
             for(x in markers) {
                 data = markers[x]
                 pos = data.gm_position.split(',')
@@ -86,13 +121,12 @@
                     livePositionLat = position.coords.latitude;
                     livePositionLng = position.coords.longitude;
                     navMode = 'live';
-                    calculateRoute();
+                    showMyPosition();
                 });
             } else {
                 fixedOriginLat = 52.16729892540329;
                 fixedOriginLng = 20.80587387084961;
                 navMode = 'fixed';
-                calculateRoute();
             }
         }
 
@@ -118,7 +152,6 @@
             }
             directionsRenderer.setMap(map);
             directionsRenderer.setOptions(options);
-
             directionsService.route(travel, function (result, status) {
                 if (status === google.maps.DirectionsStatus.OK) {
                     directionsRenderer.setDirections(result);
@@ -135,11 +168,15 @@
             directionsRenderer.setMap(null);
             calculateRoute();
         }
+        function showMyPosition() {
+            var position = new google.maps.LatLng(livePositionLat, livePositionLng);
+            map.setCenter(position);
+        }*/
 
     </script>
     {/literal}
     <div id="mapa" style="position:fixed!important;"></div>
-
+    <div id="footer-podstrona"></div>
     <div id="popupwindow" style="display:none;position: absolute!important;"></div>
 
     <div id="popupwindow2" style="display:none;position: absolute!important;"></div>

@@ -86,8 +86,20 @@ class JsRoute extends Main {
 
     function CommentShop(){
         $data = json_decode($_POST['data']);
+
+        $_POST = array();
+        $_POST['id_partner'] = $data->id_shop;
+        $_POST['nick'] = $data->name.' '.$data->surname;
+        $_POST['email'] = $data->email;
+        $_POST['rate'] = $data->opinion;
+        $_POST['text1'] = $data->message;
+        $_POST['active'] = 1;
+
+        $this->partner_comment_model->add();
+
         //wysyłanie komentarzy o sklepiel
-        echo '{"success":"true"}';
+        $message = 'Opinia została dodana.Dziękujemy.';
+        echo '{"success":"true","message":'.json_encode($message).'}';
     }
 
     function sendQuestionEmail(){

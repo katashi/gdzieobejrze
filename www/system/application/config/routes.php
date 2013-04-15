@@ -44,6 +44,8 @@ $route['default_controller'] = "main";
 $route['scaffolding_trigger'] = "";
 
 $route['home'] = "main/run/home/display";
+$route['shop'] = "main/run/shop/display";
+
 
 $route['jsroute'] = "main/run/jsroute";
 

@@ -1,0 +1,281 @@
+﻿
+
+a, abbr, acronym, address, applet, article, aside, audio, b, blockquote, big, body, center, canvas, caption, cite, code, command, datalist, dd, del, details, dfn, dl, div, dt, em, embed, fieldset, figcaption, figure, font, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, keygen, label, legend, li, meter, nav, object, ol, output, p, pre, progress, q, s, samp, section, small, span, source, strike, strong, sub, sup, table, tbody, tfoot, thead, th, tr, tdvideo, tt, u, ul, var {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    font-size: 100%;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+
+
+}
+input {
+    width:120px; border:1px white solid; background-color:#e7e7e7;
+}
+body{
+    color:black;
+
+    font-family: Arial;
+    background-image:url('../images/background.png');
+
+    background-repeat:no-repeat;
+    background-position: center top;
+    line-height: 20px;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+html, body {
+    height: 98%;
+}
+ul {
+    list-style: none outside none;
+}
+
+#sklep-menu{
+    float:left; width:282px; border-right: 1px #e0e0e0 solid;
+}
+#sklep-menu-left
+{
+    float:left; width:260px; background-color:white; border-bottom:1px #e0e0e0 solid; background-image:url('../images/sklep-bkg-menu.png'); background-position:center top; padding:11px; display:block;
+}
+
+#sklep-menu-left a:link, a:visited
+{
+;text-decoration:none; color:#919191;  width:235px; display:block; margin-left:10px; margin-right:15px;
+
+}
+
+#sklep-menu-left a:hover
+{
+    color:#414246;
+}
+
+#sklep-menu-left2
+{
+    background-color:#dedee0; padding:0px; height:55px; display:block; float:left; width:284px; border-bottom:1px white solid;
+    padding-top:8px;
+}
+
+#sklep-menu-left3
+
+{
+    float:left;width:20px; font-size:1.7em;padding:8px;margin-left:10px;
+    color:#5e5e5e;
+}
+
+#sklep-menu-left4
+{
+    float:right; width:205px; font-size:0.8em;padding:0px; margin-right:10px;
+}
+
+#sklep-menu-left4 a:link
+{
+
+    text-decoration:none; color:#5e5e5e; display:block;
+}
+
+#sklep-menu-left4 a:hover
+{
+    text-decoration:none; color:black;
+}
+
+
+#sklep-stopka
+
+{
+    float:right;width:389px; text-align:right; margin-right:20px; margin-top:74px;
+    color:#b1b1b1;	font-size:0.8em;
+
+}
+
+#sklep-stopka a:link
+
+{
+    color:#b1b1b1;
+    text-decoration:none;
+    margin-right:10px;
+
+}
+#sklep-stopka  a:visited
+
+{
+    color:#b1b1b1;
+    text-decoration:none;
+    margin-right:10px;
+
+}
+
+#sklep-stopka a:hover
+
+{
+    color:#414246;
+
+}
+
+#sklep-rejestracja
+
+{
+    color:#9f9f9f;
+    width:515px; height:65px; padding-top:15px; font-size:0.8em;
+}
+
+#sklep-rejestracja a:link
+
+{
+    color:#434247;
+    text-decoration:none;
+}
+#sklep-rejestracja a:visited
+
+{
+    color:#434247;
+    text-decoration:none;
+}
+
+#sklep-rejestracja a:hover
+
+{
+    color:#9f9f9f;
+    text-decoration:none;
+}
+
+.sklep-przycisk1 {
+    padding:7px;
+    border:1px #eaeaea solid;
+    background-color:#eaeaea;
+    font-size: 12px;
+    text-decoration:none;
+    color:#000;
+}
+
+.sklep-przycisk1:hover {
+    background-color:#fff;
+}
+
+.sklep-przycisk1:visited
+{
+    color:#000;
+}
+.sklep-przycisk2:visited
+{
+    color:#000;
+}
+.sklep-przycisk2
+{
+    padding:7px;
+    border:1px #eaeaea solid;
+    background-color:#fff;
+    font-size: 12px;
+    text-decoration:none;
+    color:#000;
+
+}
+
+
+.sklep-przycisk2:hover {
+    background-color:#eaeaea ;
+}
+
+#sklep-title
+{
+    text-transform:uppercase;
+    font-family:"Times New Roman", Times, serif;
+    margin-bottom:5px;
+    font-size:0.9em;
+}
+
+#sklep-1produkt
+{
+    float:left;width:200px; margin-left:25px; height:500px;
+}
+#sklep-1rzad
+{
+    width:684px; overflow:hidden; display:block; height:414px;  margin-top:20px; margin-left:15px; background-image:url('../images/sklep-tapp.png'); background-repeat:repeat-x; background-position:center top;
+}
+#sklep-kolejnyrzad
+{
+    width:684px; overflow:hidden; display:block; height:414px;  margin-top:50px; margin-bottom:37px; margin-left:15px; background-image:url('../images/sklep-tapp.png'); background-repeat:repeat-x; background-position:center top;
+}
+
+#sklep-opis
+{
+    color:#aaaaaa;
+    font-size:0.8em;	margin-bottom:5px;
+}
+
+#sklep-cena
+{
+    font-family:Georgia, "Times New Roman", Times, serif;
+    font-size:1.2em;	margin-bottom:5px;
+}
+
+
+
+#sklep-menu-gora
+{
+    float:left;width:684px; height: 35px;
+    padding-top:30px;
+}
+
+#sklep-menu-gora a:link
+{
+    color:white;
+    text-decoration:none;
+    margin-left:23px;
+}
+
+
+#sklep-menu-gora a:visited
+{
+    color:white;
+}
+
+#sklep-menu-gora a:hover
+{
+    color:gray;
+}
+#sklep-top{
+    height:116px; width:100%;overflow:hidden; display:block;
+}
+#sklep-top-header{
+    width:1100px; margin:auto;overflow:hidden;display:block;height:100%;
+}
+#sklep-top-header-left{
+    float:left; margin:10px 0px 20px 23px; height:100%; width:300px;
+}
+#sklep-top-header-right{
+    float:right; margin-top:0px;width:510px; background-image:url('../images/sklep-tap.png'); background-position:center top;background-repeat:no-repeat; height:114px;
+}
+#sklep-top-header-login{
+    width:515px; height:45px; font-size:0.7em; color:#939395; padding-top:10px;
+}
+
+#sklep{
+    background-image:url('../images/sklep-bkg.png'); background-repeat:repeat-x; min-height:600px; overflow:hidden;  background-color:#efeff1
+}
+#sklep-content{
+    width:1051px; margin:auto;overflow:hidden;display:block; margin-top:14px;
+}
+#sklep-content-nav{
+    background-image:url('../images/sklep-top.png'); background-repeat:no-repeat; height:65px;
+}
+
+#sklep-menu-search{
+    float:right;width:310px; height: 60px; margin-top:5px; margin-left:15px; overflow:hidden;
+}
+.insearch{
+    width:205px; border:1px #c0c0c0 solid; background-color:#f5f5f5; padding:6px;
+}
+#sklep-koszyk{
+    background-color:#6b6c70; padding:15px; height:60px; display:block; float:left; width:254px; color:white; padding-top:30px; line-height:150%; padding-left:30PX;
+}
+#sklep-bestsellers{
+    background-color:#dedee0; padding:15px; height:13px; display:block; float:left; width:254px;" class="auto-style46
+}
+#sklep-produkty{
+    float:left; background-color:white; width:719px; overflow:hidden; display:block;
+}
+#sklep-footer{
+    width:100%; margin:auto;  display:block; height:128px; background-image:url('../images/sklep-stopka2.png'); background-repeat:repeat-x
+}
