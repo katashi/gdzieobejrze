@@ -13,5 +13,11 @@ class Partner_Model extends Main_Model {
         //
     }
 
+    function load_in($array) {
+        $this->db->where_in('id',$array);
+        $query = $this->db->get($this->_name);
+        $record = $query->result_array();
+        return $record;
+    }
 
 }

@@ -52,7 +52,9 @@ class JsRoute extends Main {
 
     function displayShopsList(){
         $template = 'popup/shops_list';
-        $shops = $this->partner_model->load_all();
+        $data = json_decode($_POST['data']);
+        foreach($data as $val){$array[] = $val->id_partner;}
+        $shops = $this->partner_model->load_in($array);
         $this->ci->smarty->assign('shops', $shops);
         $this->smarty_display($template);
     }
@@ -86,7 +88,6 @@ class JsRoute extends Main {
 
     function CommentShop(){
         $data = json_decode($_POST['data']);
-
         $_POST = array();
         $_POST['id_partner'] = $data->id_shop;
         $_POST['nick'] = $data->name.' '.$data->surname;
@@ -110,6 +111,17 @@ class JsRoute extends Main {
         echo '{"success":"true","message":'.json_encode($message).'}';
     }
 
+    function searchQuery(){
+        $query = json_decode($_POST['data']);
+        $search = $this->product_model->search_query();
+        echo '{"results":'.json_encode($search).'}';
+    }
+
+    function searchAutocomplete(){
+        $query = json_decode($_POST['data']);
+        $search = $this->product_model->search_query();
+        echo '{"results":'.json_encode($search).'}';
+    }
 
     public function sendEmail($data,$template='default') {
         // lets define data

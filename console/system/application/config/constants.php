@@ -6,17 +6,18 @@
 */
 
 // site url for an application (access for back office console )
-define('SITE_URL', 'http://'.$_SERVER['SERVER_NAME'].'/www_gdzieobejrze_pl');
+define('SITE_URL', 'http://'.$_SERVER['SERVER_NAME'].'/go/');
 
 // config api
 define('API_DEBUG', 0);
 define('API_DATAFORMAT', 'OBJECT'); // OBJECT, JSON
 
 // database access
-define('DB_HOSTNAME','sql.knsdes.nazwa.pl');
-define('DB_USERNAME','knsdes_46');
-define('DB_PASSWORD','AaS^Dgw2#933542');
-define('DB_DATABASE','knsdes_46');
+define('DB_HOSTNAME','sql.vertesdesign.nazwa.pl:3307');
+define('DB_USERNAME','vertesdesign_72');
+define('DB_PASSWORD','GdzieO#12345');
+define('DB_DATABASE','vertesdesign_72');
+
 
 // image resize method
 define('MEDIA_DIM', 'both'); // both, width, height

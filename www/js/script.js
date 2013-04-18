@@ -1,5 +1,4 @@
-$.fn.serializeObject = function()
-{
+$.fn.serializeObject = function(){
     var o = {};
     var a = this.serializeArray();
         $.each(a, function() {
@@ -51,17 +50,16 @@ function submitSearchForm(form){
 }
 
 //left shop lists
-function displayShopsList(){
+function displayShopsList(data){
     //niewiem jak narazie ma działac wyszukiwanie itp wiec robie all partners1
     if($('#curiosel').length>0){
-    var success = function(data, textStatus, jqXHR){
-        $('#curiosel').html(data);
-    }
-    data = '';
+        var success = function(data, textStatus, jqXHR){
+            $('#curiosel').html(data);
+        }
+        data = data;
     ajaxRequest('displayShopsList',data,success);
     }
 }
-
 
 //popup functions
 function displayProduct(id_product){
@@ -182,9 +180,47 @@ function send_comment_email(){
     data = $("#commentshop").serializeObject();//JSON.stringify()
     ajaxRequestJson('CommentShop',data,success);
 }
+function searchAutocomplete(){
+
+    $('.searchAutocomplete').autocomplete({
+        source: function( request, response ) {
+            $.ajax({
+                url: "http://www.vertesprojekty.pl/go/www/index.php/jsroute",
+                dataType: "json",
+                type: "POST",
+                data: {
+                    method: "searchAutocomplete",
+                    data: '',
+                    query: $('.searchAutocomplete').val(),
+                    start: 0,
+                    limit: 6
+                },
+                success: function( data ) {
+                    console.log(data);
+                    response( $.map( data.results, function( item ) {
+                        return {
+                            label: item.title,
+                            value: item.title
+                        }
+                    }));
+                }
+            });
+        },
+        minLength: 2,
+        select: function( event, ui ) {
+            $('.searchAutocomplete').val(ui.item.label);
+        },
+        open: function() {
+            $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+        },
+        close: function() {
+            $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+        }
+    });
+}
 
 function ajaxRequest(method,data,success){
-    url = 'http://www.knsdes.nazwa.pl/www_gdzieobejrze_pl/www/index.php/jsroute';
+    url = 'http://www.vertesprojekty.pl/go/www/index.php/jsroute';
     $.ajax({
         //dataType: "json",
         dataType: "html",
@@ -205,7 +241,7 @@ function ajaxRequest(method,data,success){
     });
 }
 function ajaxRequestJson(method,data,success){
-    url = 'http://www.knsdes.nazwa.pl/www_gdzieobejrze_pl/www/index.php/jsroute';
+    url = 'http://www.vertesprojekty.pl/go/www/index.php/jsroute';
     $.ajax({
         dataType: "json",
         //dataType: "html",
@@ -313,10 +349,10 @@ function clearFormElements(ele) {
 $(document).ready(function(){
     searchFrom();
     //ładuje liste sklepów po lewej
-    displayShopsList();
+    //displayShopsList();
     left_slider();
-    //funcja do wyswietlania braku rezultatów
-    //displayNoResults();
+    searchAutocomplete();
+
 });
 
 //slider right

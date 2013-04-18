@@ -16,15 +16,15 @@
         <!-- end header -->
         <!-- content -->
         <div id="content">
-            <img alt="logo Gdzie Obejrze" height="111" src="{$site_url}images/logo-gdzie-obejrze.png" width="153"/><br/>
-            <span id="logo-napis">  gdzie<span>obejrze</span>.pl</span><br/>
+            <a href="{$site_url}"><img alt="logo Gdzie Obejrze" height="111" src="{$site_url}images/logo-gdzie-obejrze.png" width="153"/></a><br/>
+            <a href="{$site_url}" style="text-decoration: none"><span id="logo-napis">  gdzie<span>obejrze</span>.pl</span><a/><br/>
             <br/>
             <div id="slogan" style="height:40px"><p style="display:none"> Contrary to popular belief, Lorem Ipsum.</p>
             </div>
             <form id="searchform" method="post" action="{$site_url}index.php/mapa">
             <div id="boxes">
                 <div id="box1" style="">Znajdź przedmiot<br/>
-                    <input id="query" name="query" onfocus="if(this.value=='Samsung LCD 43 HD') this.value='';" onblur="if(this.value=='') this.value='Samsung LCD 43 HD';" value="Samsung LCD 43 HD"/><a href="#" class="button">Wybierz z kategorii </a>
+                    <input id="query" class="searchAutocomplete" name="query" onfocus="if(this.value=='Samsung LCD 43 HD') this.value='';" onblur="if(this.value=='') this.value='Samsung LCD 43 HD';" value="Samsung LCD 43 HD"/><a href="{$site_url}index.php/category" class="button">Wybierz z kategorii </a>
                 </div>
                 <div id="box2" style="">Podaj lokalizację
                     <input id="localization" name="localization" onfocus="if(this.value=='Bez lokalizacji') this.value='';" onblur="if(this.value=='') this.value='Bez lokalizacji';" value="Bez lokalizacji"/>

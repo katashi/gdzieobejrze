@@ -13,7 +13,9 @@ class Map extends Main {
 
     // display
     function display($template = null, $title_call = null) {
-        $this->search_post_process();
+       // $this->search_post_process();
+
+        $this->ci->smarty->assign('POST', json_encode($_POST));
         $this->assign_template_titlecall($template, $title_call);
         $this->smarty_display($template);
     }
@@ -37,21 +39,21 @@ class Map extends Main {
      * get: $_POST;
      * return: all products from query
      */
-    function search_post_process() {
-        $results = $this->product_model->search_query();
-//        echo'<pre style="display: none">';
-//        print_R($results);
-//        echo'</pre>';
-    }
-
-    function search_post_results(){
-
-        $results = $this->product_model->search_query_results();
-//        echo'<pre>';
-//        print_R($results);
-//        echo'</pre>';
-        //tutaj poprawny rezultat bedziemy dodawac do smartow
-
-    }
+//    function search_post_process() {
+//        $results = $this->product_model->search_query();
+////        echo'<pre style="display: none">';
+////        print_R($results);
+////        echo'</pre>';
+//    }
+//
+//    function search_post_results(){
+//
+//        $results = $this->product_model->search_query_results();
+////        echo'<pre>';
+////        print_R($results);
+////        echo'</pre>';
+//        //tutaj poprawny rezultat bedziemy dodawac do smartow
+//
+//    }
 
 }

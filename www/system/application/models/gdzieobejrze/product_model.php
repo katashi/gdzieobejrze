@@ -37,7 +37,13 @@ class Product_Model extends Main_Model {
      * Search from query
      */
     function search_query() {
-        $this->db->select('partner.id as id_partner, partner.gm_position ,product.id as id_product, product.title');
+        $this->limit_check();
+        $this->db->select('partner.id as id_partner,
+                           partner.gm_position,
+                           partner.gm_icon_url,
+                           product.id as id_product,
+                           product.title'
+                         );
         $this->db->join('partner_product', $this->_name.'.id = partner_product.id_product','left');
         $this->db->join('partner', 'partner_product.id_partner = partner.id','left');
         if(isset($_POST['query']) && !empty($_POST['query'])){
@@ -45,15 +51,16 @@ class Product_Model extends Main_Model {
             $this->db->or_like($this->_name.'.text1', $_POST['query']);
             $this->db->or_like($this->_name.'.text2', $_POST['query']);
         }
+        $this->db->group_by('id_partner');
         $query = $this->db->get($this->_name);
         $record = $query->result_array();
         return $record;
     }
-
     /*
      * Search main results
      */
     function search_query_results() {
+        $this->limit_check();
         $this->db->select('partner.id as id_partner,
                            partner.gm_position ,
                            product.id as main_product_id,
@@ -71,6 +78,7 @@ class Product_Model extends Main_Model {
             $this->db->or_like($this->_name.'.text1', $_POST['query']);
             $this->db->or_like($this->_name.'.text2', $_POST['query']);
         }
+        $this->db->group_by('id_partner');
         $query = $this->db->get($this->_name);
         $record = $query->result_array();
         return $record;

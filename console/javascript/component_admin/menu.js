@@ -43,7 +43,7 @@ function Menu() {
 
     // prototype for menu load
     Ext.menu.Menu.prototype.load = function (options) {
-        var loader = new Ext.menu.Item({text:'£adowanie'});
+        var loader = new Ext.menu.Item({text:'Å‚adowanie'});
         var conn = new Ext.data.Connection();
         conn.method = 'GET';
         conn.disableCaching = false;
@@ -58,7 +58,7 @@ function Menu() {
         }, this);
         conn.on('requestexception', function () {
             this.remove(loader);
-            this.add({text:'B³±d'});
+            this.add({text:'BÅ‚Ä…d'});
         }, this);
         conn.request(options);
     }
